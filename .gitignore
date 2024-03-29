@@ -1,0 +1,12 @@
+taller2/target/generated-sources
+taller2/target/generated-test-sources
+taller2/target/maven-status
+taller2/target/surefire-reports
+taller2/target/jacoco.exec
+taller1/target/generated-sources
+taller1/target/generated-sources
+taller1/target/generated-test-sources
+taller1/target/maven-status
+taller1/target/surefire-reports
+taller1/target/jacoco.exec
+taller1/target/site
