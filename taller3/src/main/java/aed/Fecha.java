@@ -1,20 +1,26 @@
 package aed;
 
 public class Fecha {
+    private int dia;
+    private int mes;
+
     public Fecha(int dia, int mes) {
-        throw new UnsupportedOperationException("No implementada aun");
+        dia = this.dia;
+        mes = this.mes;
+        
     }
 
     public Fecha(Fecha fecha) {
-        throw new UnsupportedOperationException("No implementada aun");
+        dia = fecha.dia;
+        mes = fecha.mes;
     }
 
     public Integer dia() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return this.dia();
     }
 
     public Integer mes() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return this.mes();
     }
 
     public String toString() {

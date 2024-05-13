@@ -1,7 +1,8 @@
 package aed;
 
 public class Agenda {
-
+    
+    
     public Agenda(Fecha fechaActual) {
         throw new UnsupportedOperationException("No implementada aun");
     }
@@ -13,6 +14,7 @@ public class Agenda {
 
     @Override
     public String toString() {
+        
         throw new UnsupportedOperationException("No implementada aun");
 
     }
