@@ -5,8 +5,8 @@ public class Fecha {
     private int mes;
 
     public Fecha(int dia, int mes) {
-        dia = this.dia;
-        mes = this.mes;
+        this.dia = dia;
+        this.mes = mes;
         
     }
 
@@ -16,24 +16,43 @@ public class Fecha {
     }
 
     public Integer dia() {
-        return this.dia();
+        return this.dia;
     }
 
     public Integer mes() {
-        return this.mes();
+        return this.mes;
     }
 
     public String toString() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return this.dia+ "/"+ this.mes;
     }
 
     @Override
     public boolean equals(Object otra) {
-        throw new UnsupportedOperationException("No implementada aun");
+        boolean esNull = (otra == null);
+        boolean claseDistinta = otra.getClass() != this.getClass();
+
+        if(esNull || claseDistinta ){
+            return false;
+        }
+        Fecha otraFecha = (Fecha) otra;
+       
+        return this.dia == otraFecha.dia && this.mes == otraFecha.mes;
+
     }
 
     public void incrementarDia() {
-        throw new UnsupportedOperationException("No implementada aun");
+        
+        if (!(this.dia == this.diasEnMes(this.mes))) {
+            this.dia += 1;
+        } else {
+            this.dia = 1;
+            this.mes = this.mes + 1;
+        }
+
+        if (this.mes > 12) {
+            this.mes = 1;
+        }
     }
 
     private int diasEnMes(int mes) {
@@ -45,5 +64,16 @@ public class Fecha {
         };
         return dias[mes - 1];
     }
+
+    // public static void main(String[] args) {
+    //     Fecha fecha = new Fecha(30, 11);
+    //     Fecha f1 = new Fecha(20,11);
+    //     boolean esCinco = (5 == 5);
+       
+        
+        
+        
+    //     System.out.println(esCinco);
+    // }
 
 }
