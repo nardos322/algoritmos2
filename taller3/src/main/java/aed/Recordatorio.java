@@ -38,8 +38,8 @@ public class Recordatorio {
         }
         Recordatorio otroRecordatorio = (Recordatorio) otro;
        
-        return this.mensaje == otroRecordatorio.mensaje &&  
-            this.fecha.equals(otroRecordatorio.fecha) && this.horario == otroRecordatorio.horario;
+        return this.mensaje.equals(otroRecordatorio.mensaje) &&  
+            this.fecha.equals(otroRecordatorio.fecha) && this.horario.equals(otroRecordatorio.horario) ;
     }
 
    
