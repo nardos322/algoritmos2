@@ -33,17 +33,38 @@ public class ListaEnlazada<T> implements Secuencia<T> {
 
     public void agregarAdelante(T elem) {
         Nodo nuevo = new Nodo(elem);
-        nuevo.siguiente = primero;
-        primero = nuevo;
+        nuevo.siguiente = this.primero;
+        this.primero = nuevo;
         this.longitud += 1;
+        
+        
     }
 
     public void agregarAtras(T elem) {
-        throw new UnsupportedOperationException("No implementada aun");
+        Nodo nuevo = new Nodo (elem);
+        
+        nuevo.anterior = this.ultimo;
+        
+        this.longitud += 1;
+        if(longitud == 1){
+            this.primero = nuevo;
+            this.ultimo = nuevo;
+            
+        } else {
+            this.ultimo.siguiente = nuevo;
+        }
+        this.ultimo = nuevo;
     }
 
     public T obtener(int i) {
-        throw new UnsupportedOperationException("No implementada aun");
+        Nodo nodoActual = this.primero;
+        Nodo nodoSiguiente = nodoActual.siguiente;
+        for (int j=0; j < i; j++){ 
+            nodoActual = nodoSiguiente;
+            nodoSiguiente = nodoSiguiente.siguiente;
+       }
+       return nodoActual.valor;
+
     }
 
     public void eliminar(int i) {

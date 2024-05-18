@@ -18,7 +18,7 @@ class ListaEnlazadaTests {
         ListaEnlazada<Integer> lista = new ListaEnlazada<>();
 
         lista.agregarAdelante(42);
-
+        
         assertEquals(1, lista.longitud());
         assertEquals(42, lista.obtener(0));
     }
@@ -28,7 +28,7 @@ class ListaEnlazadaTests {
         ListaEnlazada<Boolean> lista = new ListaEnlazada<>();
 
         lista.agregarAtras(true);
-
+        
         assertEquals(1, lista.longitud());
         assertEquals(true, lista.obtener(0));
     }
