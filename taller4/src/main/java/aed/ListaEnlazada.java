@@ -24,7 +24,7 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     public ListaEnlazada() {
         primero = null;
         ultimo = null;
-        this.longitud = 0;
+        longitud = 0;
     }
 
     public int longitud() {
@@ -117,16 +117,35 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     }
 
     public ListaEnlazada<T> copiar() {
-        throw new UnsupportedOperationException("No implementada aun");
+        ListaEnlazada<T> listaCopia = new ListaEnlazada<>();
+       
+        for(int j = 0; j < this.longitud; j++){
+            listaCopia.agregarAtras(this.obtener(j));
+           
+        }
+        
+        return listaCopia;
     }
 
     public ListaEnlazada(ListaEnlazada<T> lista) {
-        throw new UnsupportedOperationException("No implementada aun");
+        for(int j = 0; j < lista.longitud; j++){
+            this.agregarAtras(lista.obtener(j));
+        }
+
     }
     
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("No implementada aun");
+        String mensaje = "[";
+        for(int j = 0; j < this.longitud; j++){
+            
+            mensaje += (this.obtener(j).toString() + ", ");
+            if(j == this.longitud - 1){
+                mensaje += (this.obtener(j).toString() + " ]");
+            }
+        }
+        
+        return mensaje;
     }
 
     private class ListaIterador implements Iterador<T> {
