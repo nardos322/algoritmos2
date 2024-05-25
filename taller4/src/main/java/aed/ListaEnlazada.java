@@ -22,9 +22,9 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     }
 
     public ListaEnlazada() {
-        primero = null;
-        ultimo = null;
-        longitud = 0;
+        this.primero = null;
+        this.ultimo = null;
+        this.longitud = 0;
     }
 
     public int longitud() {
@@ -38,6 +38,8 @@ public class ListaEnlazada<T> implements Secuencia<T> {
         if(longitud == 1){
             this.primero = nuevo;
             this.ultimo = nuevo;
+        } else {
+            this.primero.anterior = nuevo;
         }
         this.primero = nuevo;
         
@@ -80,27 +82,24 @@ public class ListaEnlazada<T> implements Secuencia<T> {
         if(nodoActual.anterior != null && nodoActual.siguiente != null){
             nodoActual.anterior.siguiente = nodoActual.siguiente;
             nodoActual.siguiente.anterior = nodoActual.anterior;
-            nodoActual.anterior = null;
-            nodoActual.siguiente = null;
+
             this.longitud -=1;
         } else if(nodoActual.anterior == null && nodoActual.siguiente != null) {
             this.primero = nodoActual.siguiente;
             this.primero.anterior = null;
-            nodoActual.anterior = null;
-            nodoActual.siguiente = null;
+           
             this.longitud -=1;
         } else if (nodoActual.anterior != null && nodoActual.siguiente == null) {
             this.ultimo = nodoActual.anterior;
             this.ultimo.siguiente = null;
-            nodoActual.anterior = null;
-            nodoActual.siguiente = null;
+           
             this.longitud -=1;
         } else {
             this.primero = null;
             this.ultimo = null;
-            nodoActual.anterior = null;
-            nodoActual.siguiente = null;
             this.longitud -=1;
+            
+        
         }
         
        
@@ -139,12 +138,14 @@ public class ListaEnlazada<T> implements Secuencia<T> {
         String mensaje = "[";
         for(int j = 0; j < this.longitud; j++){
             
-            mensaje += (this.obtener(j).toString() + ", ");
-            if(j == this.longitud - 1){
-                mensaje += (this.obtener(j).toString() + " ]");
+            if(j != this.longitud - 1){
+                mensaje += this.obtener(j).toString() + ", ";
+            } else {
+                mensaje += this.obtener(j).toString() + "]";
             }
         }
         
+       
         return mensaje;
     }
 

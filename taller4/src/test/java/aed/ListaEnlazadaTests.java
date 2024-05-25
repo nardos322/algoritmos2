@@ -250,7 +250,9 @@ class ListaEnlazadaTests {
         lista.agregarAtras(44);
         lista.agregarAtras(45);
         lista.agregarAdelante(40);
-
+    
+    
+    
         assertEquals("[40, 41, 42, 43, 44, 45]", lista.toString());
     }
 
