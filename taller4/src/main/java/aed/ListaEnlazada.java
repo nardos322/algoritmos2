@@ -151,27 +151,66 @@ public class ListaEnlazada<T> implements Secuencia<T> {
 
     private class ListaIterador implements Iterador<T> {
     	// Completar atributos privados
+        private Nodo iterador;
+        
+        ListaIterador(){
+           this.iterador = primero;
+        }
 
         public boolean haySiguiente() {
-	        throw new UnsupportedOperationException("No implementada aun");
+            if(longitud == 0){
+                return false;
+            }
+            if(iterador == ultimo){
+        
+                return iterador != null;
+            }else if( iterador == null){
+                return false;
+            }else {
+                return iterador.siguiente != null;
+            }
+        
+            
+        
+        
+	        
         }
         
         public boolean hayAnterior() {
-	        throw new UnsupportedOperationException("No implementada aun");
+            if(longitud == 0){
+                return false;
+            }
+            if(iterador == null){
+                return ultimo.anterior != null;
+            } else {
+                return iterador.anterior != null;
+            }
+	        
         }
 
         public T siguiente() {
-	        throw new UnsupportedOperationException("No implementada aun");
+            T valor = iterador.valor;
+	        iterador = iterador.siguiente;
+            
+            return valor;
         }
         
 
         public T anterior() {
-	        throw new UnsupportedOperationException("No implementada aun");
+	        
+           
+            if (iterador == null) {
+                return ultimo.valor;
+            }else{
+                iterador = iterador.anterior;
+                return iterador.valor;
+            }
+            
         }
     }
 
     public Iterador<T> iterador() {
-	    throw new UnsupportedOperationException("No implementada aun");
+	    return new ListaIterador();
     }
 
   
