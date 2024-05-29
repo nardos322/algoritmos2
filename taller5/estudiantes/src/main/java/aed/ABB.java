@@ -1,15 +1,12 @@
 package aed;
-
-import java.util.*;
-
-// Todos los tipos de datos "Comparables" tienen el método compareTo()
 // elem1.compareTo(elem2) devuelve un entero. Si es mayor a 0, entonces elem1 > elem2
+
 public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     // Agregar atributos privados del Conjunto
     private Nodo _raiz;
     private int _cardinal;
     private Nodo nodoActual;
-    private int _altura;
+
 
     private class Nodo {
         // Agregar atributos privados del Nodo
@@ -30,7 +27,6 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
 
     public ABB() {
         this._raiz = null;
-        this._altura = 0;
         this._cardinal = 0;
     }
 
@@ -39,11 +35,27 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public T minimo(){
-        throw new UnsupportedOperationException("No implementada aun");
+        Nodo minimo = this._raiz;
+        if(this._cardinal == 1){
+            return minimo.valor;
+        }else{
+            while(minimo.left != null){
+                minimo = minimo.left;
+            }
+        }
+        return minimo.valor;
     }
 
     public T maximo(){
-        throw new UnsupportedOperationException("No implementada aun");
+        Nodo maximo = this._raiz;
+        if(this._cardinal == 1){
+            return maximo.valor;
+        }else{
+            while(maximo.right != null){
+                maximo = maximo.right;
+            }
+        }
+        return maximo.valor;
     }
 
     public void insertar(T elem){
@@ -103,9 +115,27 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public void eliminar(T elem){
-        throw new UnsupportedOperationException("No implementada aun");
-    }
+        if(pertenece(elem) && this.nodoActual.left == null && this.nodoActual.right == null){
+            this.nodoActual = null;
+            this._cardinal -= 1;
+        } else if(pertenece(elem) && (nodoActual.left != null && nodoActual.right == null)){
+            this.nodoActual = this.nodoActual.left;
+            nodoActual.left = null;
+            this._cardinal -= 1;
+        } else if(pertenece(elem) && nodoActual.left == null && nodoActual.right != null){
+            this.nodoActual = this.nodoActual.right;
+            nodoActual.right = null;
+            this._cardinal -= 1;
+        }else if (pertenece(elem) && nodoActual.left != null && nodoActual.right != null){
+            Nodo subArbolDerechoMin = this.nodoActual.right;
+            while(subArbolDerechoMin != null){
+                subArbolDerechoMin = subArbolDerechoMin.left;
+                this.nodoActual = subArbolDerechoMin;
+            }
 
+        }
+    
+    }   
     public String toString(){
         throw new UnsupportedOperationException("No implementada aun");
     }
