@@ -84,6 +84,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     public boolean pertenece(T elem){
         this.nodoActual = this._raiz;
 
+  
         if(nodoActual == null){
             return false;
         } else if (elem.compareTo(nodoActual.valor) == 0){
@@ -131,6 +132,8 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
             while(subArbolDerechoMin != null){
                 subArbolDerechoMin = subArbolDerechoMin.left;
                 this.nodoActual = subArbolDerechoMin;
+                subArbolDerechoMin = null;
+                this._cardinal -= 1;
             }
 
         }
