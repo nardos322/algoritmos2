@@ -66,7 +66,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
             this._cardinal += 1;
         }
 
-        if(!pertenece(elem) && elem.compareTo(this.nodoActual.valor) >= 0){
+        if(!pertenece(elem) && elem.compareTo(this.nodoActual.valor) > 0){
             Nodo nuevoNodo = new Nodo(elem);
             nuevoNodo.padre = this.nodoActual;
             this.nodoActual.right = nuevoNodo;
@@ -100,7 +100,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
                         
                     }
                     
-                }else {
+                }else if (elem.compareTo(nodoActual.valor) < 0) {
                     if(nodoActual.left == null){
                         return false;
                     }else{
@@ -111,7 +111,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
                 }
             }
         }
-        return this.nodoActual.valor == elem;
+        return elem.compareTo(nodoActual.valor) == 0;
        
     }
 
@@ -120,21 +120,22 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
             this.nodoActual = null;
             this._cardinal -= 1;
         } else if(pertenece(elem) && (nodoActual.left != null && nodoActual.right == null)){
-            this.nodoActual = this.nodoActual.left;
-            nodoActual.left = null;
+            this.nodoActual.valor = this.nodoActual.left.valor;
+            this.nodoActual.left = null;
             this._cardinal -= 1;
         } else if(pertenece(elem) && nodoActual.left == null && nodoActual.right != null){
-            this.nodoActual = this.nodoActual.right;
-            nodoActual.right = null;
+            this.nodoActual.valor = this.nodoActual.right.valor;
+            this.nodoActual.right = null;
             this._cardinal -= 1;
         }else if (pertenece(elem) && nodoActual.left != null && nodoActual.right != null){
             Nodo subArbolDerechoMin = this.nodoActual.right;
-            while(subArbolDerechoMin != null){
+            while(subArbolDerechoMin.left != null){
                 subArbolDerechoMin = subArbolDerechoMin.left;
-                this.nodoActual = subArbolDerechoMin;
-                subArbolDerechoMin = null;
-                this._cardinal -= 1;
+               
             }
+            this.nodoActual.valor = subArbolDerechoMin.valor;
+            subArbolDerechoMin = null;
+            this._cardinal -= 1;
 
         }
     
