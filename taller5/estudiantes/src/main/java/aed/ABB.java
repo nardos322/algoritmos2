@@ -117,15 +117,33 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
 
     public void eliminar(T elem){
         if(pertenece(elem) && this.nodoActual.left == null && this.nodoActual.right == null){
-            this.nodoActual = null;
+            this.nodoActual = this.nodoActual.padre;
+            if(nodoActual.left != null){
+                nodoActual.left = null;
+            }else{
+                nodoActual.right = null;
+            }
             this._cardinal -= 1;
+            if(this._cardinal == 0){
+                this._raiz = null;
+            }else{
+                if(this._raiz.left != null && this._raiz.right == null){
+                    this._raiz.left = nodoActual;
+                }
+            }
         } else if(pertenece(elem) && (nodoActual.left != null && nodoActual.right == null)){
-            this.nodoActual.valor = this.nodoActual.left.valor;
-            this.nodoActual.left = null;
-            this._cardinal -= 1;
+            if(nodoActual == this._raiz) {
+                this._raiz = this.nodoActual.left;
+                this._cardinal -= 1;
+            }else{
+                this.nodoActual.valor = this.nodoActual.left.valor;
+                nodoActual.left = null;
+                this._cardinal -= 1;
+            }
+           
         } else if(pertenece(elem) && nodoActual.left == null && nodoActual.right != null){
             this.nodoActual.valor = this.nodoActual.right.valor;
-            this.nodoActual.right = null;
+            nodoActual.right = null;
             this._cardinal -= 1;
         }else if (pertenece(elem) && nodoActual.left != null && nodoActual.right != null){
             Nodo subArbolDerechoMin = this.nodoActual.right;
@@ -134,7 +152,8 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
                
             }
             this.nodoActual.valor = subArbolDerechoMin.valor;
-            subArbolDerechoMin = null;
+            this.nodoActual.right = null;
+            
             this._cardinal -= 1;
 
         }
