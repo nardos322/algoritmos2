@@ -1,6 +1,7 @@
 package aed;
 // elem1.compareTo(elem2) devuelve un entero. Si es mayor a 0, entonces elem1 > elem2
 
+
 public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     // Agregar atributos privados del Conjunto
     private Nodo _raiz;
@@ -115,65 +116,204 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
        
     }
 
+    private Nodo sucesor(Nodo nodo) {
+        // Si el nodo tiene un hijo right, entonces el sucesor es el nodo más a la izquierda en el subárbol right
+        if (nodo.right != null) {
+            return encontrarMinimo(nodo.right);
+        }
+
+        // Si no tiene hijo right, subimos por el árbol hasta encontrar un ancestro que sea hijo izquierdo de su padre
+        Nodo padre = nodo.padre;
+        while (padre != null && nodo == padre.right) {
+            nodo = padre;
+            padre = padre.padre;
+        }
+
+        return padre;
+    }
+    private Nodo encontrarMinimo(Nodo nodo) {
+        Nodo minimo = nodo;
+        while (minimo.left != null) {
+            minimo = minimo.left;
+        }
+        return minimo;
+    }
+
     public void eliminar(T elem){
+    
+
         if(pertenece(elem) && this.nodoActual.left == null && this.nodoActual.right == null){
-            this.nodoActual = this.nodoActual.padre;
-            if(nodoActual.left != null){
-                nodoActual.left = null;
-            }else{
-                nodoActual.right = null;
-            }
+          if(this._raiz == nodoActual){
+            this._raiz = null;
             this._cardinal -= 1;
-            if(this._cardinal == 0){
-                this._raiz = null;
-            }else{
-                if(this._raiz.left != null && this._raiz.right == null){
-                    this._raiz.left = nodoActual;
-                }
+          }else{    
+            if(nodoActual.padre.left == nodoActual){
+                nodoActual = nodoActual.padre;
+                nodoActual.left = null;
+                this._cardinal -= 1;
+            }  else {
+                nodoActual = nodoActual.padre;
+                nodoActual.right = null;
+                this._cardinal -= 1;
             }
+            
+          }
         } else if(pertenece(elem) && (nodoActual.left != null && nodoActual.right == null)){
             if(nodoActual == this._raiz) {
                 this._raiz = this.nodoActual.left;
+                this._raiz.padre = null;
                 this._cardinal -= 1;
             }else{
-                this.nodoActual.valor = this.nodoActual.left.valor;
-                nodoActual.left = null;
-                this._cardinal -= 1;
+                Nodo conectar = nodoActual.left;
+                if(nodoActual.padre.left == nodoActual){
+                    nodoActual.padre.left = conectar;
+                    conectar.padre = nodoActual.padre;
+                    this._cardinal -= 1;
+                }else if(nodoActual.padre.right == nodoActual){
+                    nodoActual.padre.right = conectar;
+                    conectar.padre = nodoActual.padre;
+                    this._cardinal -= 1;
+                }
             }
            
         } else if(pertenece(elem) && nodoActual.left == null && nodoActual.right != null){
-            this.nodoActual.valor = this.nodoActual.right.valor;
-            nodoActual.right = null;
-            this._cardinal -= 1;
+            if(nodoActual == this._raiz){
+                this._raiz = this.nodoActual.right;
+                this._raiz.padre = null;
+                this._cardinal -= 1;
+            }else{
+                Nodo conectar = nodoActual.right;
+                if(nodoActual.padre.left == nodoActual){
+                    nodoActual.padre.left = conectar;
+                    conectar.padre = nodoActual.padre;
+                    this._cardinal -= 1;
+                }else if(nodoActual.padre.right == nodoActual){
+                    nodoActual.padre.right = conectar;
+                    conectar.padre = nodoActual.padre;
+                    this._cardinal -= 1;
+                }
+
+            }
+          
         }else if (pertenece(elem) && nodoActual.left != null && nodoActual.right != null){
             Nodo subArbolDerechoMin = this.nodoActual.right;
             while(subArbolDerechoMin.left != null){
                 subArbolDerechoMin = subArbolDerechoMin.left;
                
             }
-            this.nodoActual.valor = subArbolDerechoMin.valor;
-            this.nodoActual.right = null;
+            nodoActual.valor = subArbolDerechoMin.valor;
+            if(subArbolDerechoMin.right == null &&  subArbolDerechoMin.padre.left == subArbolDerechoMin){
+                subArbolDerechoMin.padre.left = null;
+            }else if(subArbolDerechoMin.right == null && subArbolDerechoMin.padre.right == subArbolDerechoMin){
+                subArbolDerechoMin.padre.right = null;
+
+            } else if(subArbolDerechoMin.right != null){
+                Nodo conectar = subArbolDerechoMin.right;
+                if(subArbolDerechoMin.padre.right == subArbolDerechoMin){
+                    subArbolDerechoMin.padre.right = conectar;
+                    conectar.padre = subArbolDerechoMin.padre;
+                }else if(subArbolDerechoMin.padre.left == subArbolDerechoMin){
+                    subArbolDerechoMin.padre.left = conectar;
+                    conectar.padre = subArbolDerechoMin.padre;
+                }
+            }
             
             this._cardinal -= 1;
+
+           
 
         }
     
     }   
     public String toString(){
-        throw new UnsupportedOperationException("No implementada aun");
+        String mensaje = "{";
+        Nodo actual = encontrarMinimo(_raiz);
+        int i = 0;
+        while(i < _cardinal ){
+            if(i == _cardinal - 1){
+                mensaje += actual.valor+"}";
+                i++;
+            }else{
+                mensaje += actual.valor + ",";
+                actual = sucesor(actual);
+            
+                i++;
+            }
+            
+        }
+        
+        return mensaje;
+    
+      
+        
     }
 
     private class ABB_Iterador implements Iterador<T> {
         private Nodo _actual;
-
+        private boolean pasamosMin;
+        ABB_Iterador(){
+            _actual = _raiz;
+            pasamosMin = false;
+            while(_actual.left != null){
+                _actual = _actual.left;
+            }
+        }
         public boolean haySiguiente() {            
-            throw new UnsupportedOperationException("No implementada aun");
+            if (_actual == maximo()){
+                return true;
+            } else {
+                return false;
+            }
         }
     
         public T siguiente() {
-            throw new UnsupportedOperationException("No implementada aun");
-        }
+            
+            if(_actual.valor == minimo() && pasamosMin == false){
+                pasamosMin = true;
+                return minimo();
+            }
+            else if (_actual.valor == minimo()){
+                if (_actual.left != null){
+                    while(_actual.right != null){
+                        _actual = _actual.right;
+                    }
+                } else {
+                    Nodo tmp = _actual;
+                    _actual = _actual.padre;
+                    while(tmp.valor.compareTo(_actual.valor) > 0){
+                        _actual = _actual.padre;
+                    }
+                }
+                return _actual.valor;
+            }
+            
+            else if(_actual == _raiz){
+                _actual = _actual.right;
+                while (_actual.left != null){
+                    _actual = _actual.left;
+                }
+                return _actual.valor;
+            }
+            else {
+               
+                if (_actual.left != null){
+                    _actual = _actual.right;
+                    while(_actual.left != null){
+                        _actual = _actual.left;
+                    }}
+                else {
+                    Nodo tmp = _actual;
+                    _actual = _actual.padre;
+                    while(tmp.valor.compareTo(_actual.valor) > 0){
+                        _actual = _actual.padre;
+                    }
+                }
+                return _actual.valor;
+                }
+            }
     }
+
+    
 
     public Iterador<T> iterador() {
         return new ABB_Iterador();
