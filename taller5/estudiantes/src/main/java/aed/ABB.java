@@ -116,7 +116,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
        
     }
 
-    private Nodo sucesor(Nodo nodo) {
+    public Nodo sucesor(Nodo nodo) {
         // Si el nodo tiene un hijo right, entonces el sucesor es el nodo más a la izquierda en el subárbol right
         if (nodo.right != null) {
             return encontrarMinimo(nodo.right);
@@ -131,7 +131,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
 
         return padre;
     }
-    private Nodo encontrarMinimo(Nodo nodo) {
+    public Nodo encontrarMinimo(Nodo nodo) {
         Nodo minimo = nodo;
         while (minimo.left != null) {
             minimo = minimo.left;
@@ -198,7 +198,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         }else if (pertenece(elem) && nodoActual.left != null && nodoActual.right != null){
             Nodo subArbolDerechoMin = this.nodoActual.right;
             while(subArbolDerechoMin.left != null){
-                subArbolDerechoMin = subArbolDerechoMin.left;
+                subArbolDerechoMin = encontrarMinimo(subArbolDerechoMin.left);
                
             }
             nodoActual.valor = subArbolDerechoMin.valor;
