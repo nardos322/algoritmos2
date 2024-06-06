@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="aed.ABBTests" time="0.428" tests="12" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="22"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\astro\Documents\algoritmos2\labo\taller5\estudiantes\target\test-classes;C:\Users\astro\Documents\algoritmos2\labo\taller5\estudiantes\target\classes;C:\Users\astro\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\astro\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\astro\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\astro\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\astro\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\astro\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="America/Buenos_Aires"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="22"/>
+    <property name="user.country" value="AR"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-22\bin"/>
+    <property name="sun.java.command" value="C:\Users\astro\AppData\Local\Temp\surefire9165077232119067377\surefirebooter-20240606025358702_3.jar C:\Users\astro\AppData\Local\Temp\surefire9165077232119067377 2024-06-06T02-53-58_502-jvmRun1 surefire-20240606025358702_1tmp surefire_0-20240606025358702_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="test" value="aed.ABBTests"/>
+    <property name="surefire.test.class.path" value="C:\Users\astro\Documents\algoritmos2\labo\taller5\estudiantes\target\test-classes;C:\Users\astro\Documents\algoritmos2\labo\taller5\estudiantes\target\classes;C:\Users\astro\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\astro\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\astro\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\astro\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\astro\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\astro\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\astro"/>
+    <property name="user.language" value="es"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2024-03-19"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-22"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\astro\Documents\algoritmos2\labo\taller5\estudiantes"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\astro\AppData\Local\Temp\surefire9165077232119067377\surefirebooter-20240606025358702_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="22+36-2370"/>
+    <property name="user.name" value="astro"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="maven.ext.class.path" value="C:\Users\astro\.vscode\extensions\oracle.oracle-java-22.0.1\nbcode\java\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="localRepository" value="C:\Users\astro\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\astro\AppData\Local\Temp\"/>
+    <property name="java.version" value="22"/>
+    <property name="user.dir" value="C:\Users\astro\Documents\algoritmos2\labo\taller5\estudiantes"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-22\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Eclipse Adoptium\jdk-17.0.4.101-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\dotnet\;C:\Users\astro\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\msys64\ucrt64\bin;C:\Users\astro\AppData\Local\Programs\Python\Python311\;C:\Users\astro\AppData\Local\Programs\Python\Python311\Scripts\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\apache-maven-3.9.6-bin\apache-maven-3.9.6\bin;C:\Program Files\Java\jdk-22\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Eclipse Adoptium\jdk-17.0.4.101-hotspot\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\dotnet\;C:\Users\astro\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\msys64\ucrt64\bin;C:\Users\astro\AppData\Local\Programs\Python\Python311\;C:\Users\astro\AppData\Local\Programs\Python\Python311\Scripts\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\astro\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\astro\AppData\Local\Programs\Python\Python311\;C:\Users\astro\AppData\Local\Microsoft\WindowsApps;C:\Users\astro\AppData\Local\Programs\Microsoft VS Code\bin;C:\ghcup\bin;C:\Users\astro\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\astro\AppD;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="22+36-2370"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="66.0"/>
+  </properties>
+  <testcase name="eliminar_elemento_con_un_descendiente" classname="aed.ABBTests" time="0.2"/>
+  <testcase name="eliminar_elemento_con_dos_descendientes" classname="aed.ABBTests" time="0.004"/>
+  <testcase name="eliminar_raiz" classname="aed.ABBTests" time="0.004"/>
+  <testcase name="eliminar_elemento_con_doble_descendencia" classname="aed.ABBTests" time="0.001"/>
+  <testcase name="testToString" classname="aed.ABBTests" time="0.04"/>
+  <testcase name="stress" classname="aed.ABBTests" time="0.047"/>
+  <testcase name="nuevo_conjunto_vacio" classname="aed.ABBTests" time="0.003"/>
+  <testcase name="siguiente_inorder" classname="aed.ABBTests" time="0.005"/>
+  <testcase name="eliminar_elemento_con_sucesor_arriba" classname="aed.ABBTests" time="0.004"/>
+  <testcase name="insertar_cinco_nombres" classname="aed.ABBTests" time="0.002"/>
+  <testcase name="insertar_un_elemento" classname="aed.ABBTests" time="0.002"/>
+  <testcase name="insertar_cinco_enteros" classname="aed.ABBTests" time="0.003"/>
+</testsuite>
