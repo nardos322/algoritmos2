@@ -36,6 +36,7 @@ public class Trie<T>{
 
     // Método para insertar una palabra en el trie
     public void insert(String key, T value) {
+        
         Nodo node = root;
         for (int i = 0; i < key.length(); i++) {
             int index = key.charAt(i);
@@ -67,5 +68,27 @@ public class Trie<T>{
         }
     }
 
+   
+    public void delete(String key){
+
+        Nodo node = root;
+        
+        for(int i = 0; i < key.length(); i++){
+            
+            char index = key.charAt(i);
+            System.out.print(index);
+            
+            
+        }
+
+        
+        
+
+        
+        
+        
+        
+    }
+    
 
 }
