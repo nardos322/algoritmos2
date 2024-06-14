@@ -1,12 +1,20 @@
 package aed;
 
 public class SistemaSIU {
+    private Trie<Carrera> carreras;
+    private Trie<Alumno> alumnos;
 
     enum CargoDocente{
         AY2,
         AY1,
         JTP,
         PROF
+    }
+
+
+    public SistemaSIU(){
+        carreras = new Trie<Carrera>();
+        alumnos = new Trie<Alumno>();
     }
 
     public SistemaSIU(InfoMateria[] infoMaterias, String[] libretasUniversitarias){
