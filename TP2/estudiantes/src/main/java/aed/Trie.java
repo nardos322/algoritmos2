@@ -7,88 +7,98 @@ public class Trie<T>{
     private int size;
 
 
-    private class Nodo {
+    private static class Nodo {
         // Array de nodos hijos para 256 caracteres
-        ArrayList<Nodo> children;
-        T definicion;
+       // ArrayList<Nodo> children;
+        Nodo[] children = new Nodo[256];
+        Object definicion;
         // Marca si este nodo es el final de una palabra
-      
-    
-        // Constructor
-        public Nodo() {
-            // Inicializamos el ArrayList con capacidad 256
-            children = new ArrayList<>(256);
-            // Llenamos el ArrayList con valores nulos
-            for (int i = 0; i < 256; i++) {
-                children.add(null);
-            }
-    
-            
-        }
+
+       
     }
 
    
     // Constructor
     public Trie() {
-        root = new Nodo();
         this.size = 0;
     }
 
-    // Método para insertar una palabra en el trie
-    public void insert(String key, T value) {
-        
-        Nodo node = root;
-        for (int i = 0; i < key.length(); i++) {
-            int index = key.charAt(i);
-        
-            if (node.children.get(index) == null) {
-                node.children.set(index, new Nodo());
-            }   
-            node = node.children.get(index); 
+    public void insert(String key, T value){
+        if(root == null) {
+            root = new Nodo();
         }
-        node.definicion = value;
-        size += 1;
 
-       
+        Nodo nodo = root;
+
+        for(int i = 0; i < key.length(); i++){
+            char index = key.charAt(i);
+            if(nodo.children[index] == null){
+                nodo.children[index] = new Nodo();
+            }
+
+            nodo =  nodo.children[index];
+        }
+
+        nodo.definicion = value;
+        size += 1;
     }
 
+    // Método para insertar una palabra en el trie
+    // public void insert(String key, T value) {
+        
+    //     Nodo node = root;
+    //     for (int i = 0; i < key.length(); i++) {
+    //         char index = key.charAt(i);
+        
+    //         if (node.children.get(index) == null) {
+    //             node.children.set(index, new Nodo());
+    //         }   
+    //         node = node.children.get(index); 
+    //     }
+    //     node.definicion = value;
+    //     size += 1;
+
+       
+    // }
+
     public T get(String key){
-        Nodo node = root;
+        Nodo nodo = root;
         for(int i = 0; i < key.length(); i++){
-            int index = key.charAt(i);
-            if(node.children.get(index) == null){
+            char index = key.charAt(i);
+            if(nodo.children[index] == null){
                 return null;
             }
-            node = node.children.get(index);
+            nodo = nodo.children[index];
         }
-        if(node.definicion != null){
-            return node.definicion;
+        if(nodo.definicion != null){
+            return  (T) nodo.definicion;
         } else {
             return null;
         }
     }
 
    
-    public void delete(String key){
+    // public void delete(String key) { 
+    //     root = delete(root, key, 0); 
+    //     size -= 1;
+   
+    // }
+    // private Nodo delete(Nodo x, String key, int d) {
+    //     Nodo nodo;
+    //     if (x == null) return null;
+    //     if (d == key.length())
+    //         x.definicion = null;
+    //     else {
+    //         char c = key.charAt(d);
+    //         nodo =  x.children.get(c);
+    //         nodo = delete(nodo, key, d+1);
+    //     }
+    //     if (x.definicion != null) return x;
+    //     for (char c = 0; c < 256; c++)
+    //         if (x.children.get(c) != null) return x;
+    //     return null;
+    // }
 
-        Nodo node = root;
-        
-        for(int i = 0; i < key.length(); i++){
-            
-            char index = key.charAt(i);
-            System.out.print(index);
-            
-            
-        }
-
-        
-        
-
-        
-        
-        
-        
-    }
     
 
 }
