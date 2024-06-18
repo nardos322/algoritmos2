@@ -7,12 +7,18 @@ public class Trie<T>{
     private int size;
 
 
-    private static class Nodo {
+    private class Nodo {
         // Array de nodos hijos para 256 caracteres
-       // ArrayList<Nodo> children;
-        Nodo[] children = new Nodo[256];
-        Object definicion;
+        ArrayList<Nodo> next;
+        //Nodo[] children = new Nodo[256];
+        T definicion;
         // Marca si este nodo es el final de una palabra
+        public Nodo(){
+            next = new ArrayList();
+            for(int i = 0, i < 256; i++){
+                next.add(null);
+            }
+        }
 
        
     }
@@ -23,55 +29,61 @@ public class Trie<T>{
         this.size = 0;
     }
 
-    public void insert(String key, T value){
-        if(root == null) {
+ //   public void insert(String key, T value){
+ //       if(root == null) {
+ //           root = new Nodo();
+ //       }
+
+ //       Nodo nodo = root;
+
+   //     for(int i = 0; i < key.length(); i++){
+      //      char index = key.charAt(i);
+    //        if(nodo.children[index] == null){
+    //            nodo.children[index] = new Nodo();
+    //        }
+
+      //      nodo =  nodo.children[index];
+       // }
+
+      //  nodo.definicion = value;
+      //  size += 1;
+    //}
+
+    //Método para insertar una palabra en el trie
+    public void insert(String key, T value) {
+        Nodo nodo;
+
+        if(root == null){
             root = new Nodo();
         }
-
-        Nodo nodo = root;
-
-        for(int i = 0; i < key.length(); i++){
+        
+        nodo = root;
+        for (int i = 0; i < key.length(); i++) {
             char index = key.charAt(i);
-            if(nodo.children[index] == null){
-                nodo.children[index] = new Nodo();
-            }
-
-            nodo =  nodo.children[index];
+        
+            if (nodo.next.get(index) == null) {
+                nodo.next.set(index, new Nodo());
+            }   
+            nodo = nodo.next.get(index); 
         }
-
         nodo.definicion = value;
+        
         size += 1;
-    }
-
-    // Método para insertar una palabra en el trie
-    // public void insert(String key, T value) {
-        
-    //     Nodo node = root;
-    //     for (int i = 0; i < key.length(); i++) {
-    //         char index = key.charAt(i);
-        
-    //         if (node.children.get(index) == null) {
-    //             node.children.set(index, new Nodo());
-    //         }   
-    //         node = node.children.get(index); 
-    //     }
-    //     node.definicion = value;
-    //     size += 1;
 
        
-    // }
+     }
 
     public T get(String key){
         Nodo nodo = root;
         for(int i = 0; i < key.length(); i++){
             char index = key.charAt(i);
-            if(nodo.children[index] == null){
+            if(nodo.next.get(index) == null){
                 return null;
             }
-            nodo = nodo.children[index];
+            nodo = nodo.next.get(index);
         }
         if(nodo.definicion != null){
-            return  (T) nodo.definicion;
+            return  nodo.definicion;
         } else {
             return null;
         }
