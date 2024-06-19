@@ -84,14 +84,18 @@ public class Main {
 
         // alumnos.put(a2.getLibreta(), a2);
         alumnos.put("123", new Alumno("123"));
-        alumnos.put("124",new Alumno("124"));
-     
+       // alumnos.put("124",new Alumno("124"));
+        Alumno f = alumnos.get("123");
+        Alumno h = alumnos2.get("123");
+
+        
         alumnos2.insert("123", new Alumno("123"));
         alumnos2.insert("124", new Alumno("124"));
+        alumnos2.insert("sea", new Alumno("sea"));
         // alumnos2.delete(a2.getLibreta());
-        
-        Alumno id = alumnos2.get("124");
-        System.out.print(id);
+        System.out.print(alumnos2);
+        //Alumno id = alumnos2.get("124");
+        //System.out.print(id);
         // System.out.print(g.next[0] == null);
 
         
