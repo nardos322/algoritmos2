@@ -93,6 +93,7 @@ public class Main {
         alumnos2.insert("124", new Alumno("124"));
         alumnos2.insert("sea", new Alumno("sea"));
         // alumnos2.delete(a2.getLibreta());
+        ///nueva linea
         System.out.print(alumnos2);
         //Alumno id = alumnos2.get("124");
         //System.out.print(id);
