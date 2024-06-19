@@ -8,11 +8,8 @@ public class Trie<T>{
 
 
     private class Nodo {
-        // Array de nodos hijos para 256 caracteres
         ArrayList<Nodo> next;
-        //Nodo[] children = new Nodo[256];
         T definicion;
-        // Marca si este nodo es el final de una palabra
         public Nodo(){
             next = new ArrayList();
             for(int i = 0; i < 256; i++){
@@ -29,35 +26,11 @@ public class Trie<T>{
         this.size = 0;
     }
 
- //   public void insert(String key, T value){
- //       if(root == null) {
- //           root = new Nodo();
- //       }
-
- //       Nodo nodo = root;
-
-   //     for(int i = 0; i < key.length(); i++){
-      //      char index = key.charAt(i);
-    //        if(nodo.children[index] == null){
-    //            nodo.children[index] = new Nodo();
-    //        }
-
-      //      nodo =  nodo.children[index];
-       // }
-
-      //  nodo.definicion = value;
-      //  size += 1;
-    //}
-
     //Método para insertar una palabra en el trie
     public void insert(String key, T value) {
-        Nodo nodo;
-
-        if(root == null){
-            root = new Nodo();
-        }
-        
-        nodo = root;
+   
+        if(root == null){root = new Nodo();}
+        Nodo nodo = root;
         for (int i = 0; i < key.length(); i++) {
             char index = key.charAt(i);
         
@@ -74,6 +47,7 @@ public class Trie<T>{
     }
 
     public T get(String key){
+        if(root ==null) return null;
         Nodo nodo = root;
         for(int i = 0; i < key.length(); i++){
             char index = key.charAt(i);
