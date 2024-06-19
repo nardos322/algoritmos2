@@ -15,7 +15,7 @@ public class Trie<T>{
         // Marca si este nodo es el final de una palabra
         public Nodo(){
             next = new ArrayList();
-            for(int i = 0, i < 256; i++){
+            for(int i = 0; i < 256; i++){
                 next.add(null);
             }
         }
@@ -71,7 +71,7 @@ public class Trie<T>{
         size += 1;
 
        
-     }
+    }
 
     public T get(String key){
         Nodo nodo = root;
