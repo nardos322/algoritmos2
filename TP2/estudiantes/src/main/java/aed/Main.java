@@ -56,12 +56,12 @@ public class Main {
 
     }
 
-   
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args){
         TrieST<Carrera> carreras = new TrieST<Carrera>();
         ArrayList<Node> a1 = new ArrayList<>(6);
-        TrieST<Alumno> alumnos = new TrieST<Alumno>(); 
+        TrieST<Alumno> alumnos = new TrieST<Alumno>();
         Trie<Alumno> alumnos2 = new Trie<Alumno>();
         char[] numeros = new char[256];
         String nombre = "nahuel";
@@ -69,40 +69,62 @@ public class Main {
         Nodo g1 = new Nodo();
         Alumno a2 = new Alumno("646/20");
         ArrayList t1 = new ArrayList<>();
-
         Alumno copia = a2;
 
+
+
         a2.incribrirMateria();
-      
+
         int[] k = {10,5,3,4};
 
         int res = arraySearch(k,0);
-        
-        System.out.print(res);
-        
-        
+
+        //System.out.print(res);
+
+
 
         // alumnos.put(a2.getLibreta(), a2);
         alumnos.put("123", new Alumno("123"));
-       // alumnos.put("124",new Alumno("124"));
+        alumnos.put("124",new Alumno("124"));
         Alumno f = alumnos.get("123");
-        Alumno h = alumnos2.get("123");
+        //Alumno h = alumnos2.get("123");
 
-        
-        alumnos2.insert("123", new Alumno("123"));
-        alumnos2.insert("124", new Alumno("124"));
+
+
         alumnos2.insert("sea", new Alumno("sea"));
-        // alumnos2.delete(a2.getLibreta());
-        ///nueva linea
-        System.out.print(alumnos2);
+        alumnos2.insert("124", new Alumno("124"));
+        alumnos2.insert("123", new Alumno("123"));
+       // alumnos2.delete(a2.getLibreta());
+       // System.out.print(alumnos2);
+        Trie<Alumno> alumnos3 = new Trie<>();
+        TrieST<Alumno> alumnos4 = new TrieST<>();
+        alumnos3.insert("125", new Alumno("nahuel"));
+        alumnos3.insert("126",new Alumno("elias"));
+        alumnos4.put("125", new Alumno("nahuel"));
+        alumnos4.put("126", new Alumno("elias"));
+
+        alumnos3.delete("125");
+        alumnos4.delete("125");
+
+        System.out.print("holaa");
+
+
+
+
+
+
+
+
         //Alumno id = alumnos2.get("124");
         //System.out.print(id);
         // System.out.print(g.next[0] == null);
 
-        
 
-   
-        
+
+
+
+
+
     }
 
 }
