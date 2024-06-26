@@ -162,20 +162,12 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
           }
         } else if(pertenece(elem) && (nodoActual.left != null && nodoActual.right == null)){
             if(nodoActual == this._raiz) {
-                this._raiz = this.nodoActual.left;
+            this._raiz = this.nodoActual.left;
                 this._raiz.padre = null;
                 this._cardinal -= 1;
             }else{
                 Nodo conectar = nodoActual.left;
-                if(nodoActual.padre.left == nodoActual){
-                    nodoActual.padre.left = conectar;
-                    conectar.padre = nodoActual.padre;
-                    this._cardinal -= 1;
-                }else if(nodoActual.padre.right == nodoActual){
-                    nodoActual.padre.right = conectar;
-                    conectar.padre = nodoActual.padre;
-                    this._cardinal -= 1;
-                }
+                conectarNodoSucesor(conectar);
             }
            
         } else if(pertenece(elem) && nodoActual.left == null && nodoActual.right != null){
@@ -185,15 +177,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
                 this._cardinal -= 1;
             }else{
                 Nodo conectar = nodoActual.right;
-                if(nodoActual.padre.left == nodoActual){
-                    nodoActual.padre.left = conectar;
-                    conectar.padre = nodoActual.padre;
-                    this._cardinal -= 1;
-                }else if(nodoActual.padre.right == nodoActual){
-                    nodoActual.padre.right = conectar;
-                    conectar.padre = nodoActual.padre;
-                    this._cardinal -= 1;
-                }
+                conectarNodoSucesor(conectar);
 
             }
           
@@ -226,25 +210,37 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
 
         }
     
-    }   
+    }
+
+    private void conectarNodoSucesor(Nodo conectar) {
+        if(nodoActual.padre.left == nodoActual){
+            nodoActual.padre.left = conectar;
+            conectar.padre = nodoActual.padre;
+            this._cardinal -= 1;
+        }else if(nodoActual.padre.right == nodoActual){
+            nodoActual.padre.right = conectar;
+            conectar.padre = nodoActual.padre;
+            this._cardinal -= 1;
+        }
+    }
+
     public String toString(){
-        String mensaje = "{";
+        StringBuilder mensaje = new StringBuilder("{");
         Nodo actual = encontrarMinimo(_raiz);
         int i = 0;
         while(i < _cardinal ){
             if(i == _cardinal - 1){
-                mensaje += actual.valor+"}";
-                i++;
+                mensaje.append(actual.valor).append("}");
             }else{
-                mensaje += actual.valor + ",";
+                mensaje.append(actual.valor).append(",");
                 actual = sucesor(actual);
-            
-                i++;
+
             }
-            
+            i++;
+
         }
         
-        return mensaje;
+        return mensaje.toString();
     
       
         
