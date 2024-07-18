@@ -1,5 +1,4 @@
 package aed;
-
 import java.util.ArrayList;
 
 public class Trie<T> {
@@ -13,7 +12,7 @@ public class Trie<T> {
         T definicion;
 
         public Nodo() {
-            next = new ArrayList<Nodo>();
+            next = new ArrayList<>();
             for (int i = 0; i < 256; i++) {
                 next.add(null);
             }
@@ -26,6 +25,10 @@ public class Trie<T> {
     // Constructor
     public Trie() {
         this.size = 0;
+    }
+
+    public int size(){
+        return size;
     }
 
     //Método para insertar una palabra en el trie

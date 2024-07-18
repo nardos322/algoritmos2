@@ -5,5 +5,6 @@ public class Main {
         a.agregar(3);
 
         System.out.println(a.datos[1]);
+        System.out.println("hola nahuel como estas?");
     }
 }
