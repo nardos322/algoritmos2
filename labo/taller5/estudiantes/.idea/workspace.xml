@@ -65,7 +65,14 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.ABBTests">
+  <component name="RunManager" selected="Application.Prueba">
+    <configuration name="Prueba" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Prueba" />
+      <module name="labo5" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ABBTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="labo5" />
       <extension name="coverage">
@@ -99,6 +106,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Prueba" />
         <item itemvalue="JUnit.ABBTests" />
         <item itemvalue="JUnit.ABBTests.eliminar_elemento_con_un_descendiente" />
       </list>
