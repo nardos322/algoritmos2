@@ -143,26 +143,25 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
 
     public void eliminar(T elem){
     
-
         if(pertenece(elem) && this.nodoActual.left == null && this.nodoActual.right == null){
-          if(this._raiz == nodoActual){
-            this._raiz = null;
-            this._cardinal -= 1;
-          }else{    
-            if(nodoActual.padre.left == nodoActual){
-                nodoActual = nodoActual.padre;
-                nodoActual.left = null;
+            if(this._raiz == nodoActual){
+                this._raiz = null;
                 this._cardinal -= 1;
-            }  else {
-                nodoActual = nodoActual.padre;
-                nodoActual.right = null;
-                this._cardinal -= 1;
-            }
+            }else{
+                if(nodoActual.padre.left == nodoActual){
+                    nodoActual = nodoActual.padre;
+                    nodoActual.left = null;
+                    this._cardinal -= 1;
+                }  else {
+                    nodoActual = nodoActual.padre;
+                    nodoActual.right = null;
+                    this._cardinal -= 1;
+                }
             
-          }
+            }
         } else if(pertenece(elem) && (nodoActual.left != null && nodoActual.right == null)){
             if(nodoActual == this._raiz) {
-            this._raiz = this.nodoActual.left;
+                this._raiz = this.nodoActual.left;
                 this._raiz.padre = null;
                 this._cardinal -= 1;
             }else{
