@@ -7,7 +7,6 @@ public class ListaEnlazada<T> implements Secuencia<T> {
    private Nodo ultimo;
    private int longitud;
 
-    
    private class Nodo {
         T valor;
         Nodo siguiente;
