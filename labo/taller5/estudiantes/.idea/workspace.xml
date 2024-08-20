@@ -4,40 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="789b13b9-0231-4349-8cdc-441eee891c89" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../TP2/estudiantes/src/main/java/aed/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../TP2/estudiantes/src/main/java/aed/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../TP2/estudiantes/src/main/java/aed/Trie.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../TP2/estudiantes/src/main/java/aed/Trie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../TP2/estudiantes/target/classes/aed/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../TP2/estudiantes/target/classes/aed/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../TP2/estudiantes/target/classes/aed/Trie$Nodo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../TP2/estudiantes/target/classes/aed/Trie$Nodo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../TP2/estudiantes/target/classes/aed/Trie.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../TP2/estudiantes/target/classes/aed/Trie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller1/target/classes/aed/Funciones.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller1/target/classes/aed/Funciones.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller1/target/test-classes/aed/FuncionesTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller1/target/test-classes/aed/FuncionesTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller2/target/classes/aed/Cobertura.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller2/target/classes/aed/Cobertura.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller2/target/classes/aed/Debugging.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller2/target/classes/aed/Debugging.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller2/target/test-classes/aed/CoberturaTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller2/target/test-classes/aed/CoberturaTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller2/target/test-classes/aed/DebuggingTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller2/target/test-classes/aed/DebuggingTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller3/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller3/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller3/target/classes/aed/Agenda.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller3/target/classes/aed/Agenda.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller3/target/classes/aed/ArregloRedimensionableDeRecordatorios.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller3/target/classes/aed/ArregloRedimensionableDeRecordatorios.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller3/target/classes/aed/Fecha.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller3/target/classes/aed/Fecha.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller3/target/classes/aed/Horario.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller3/target/classes/aed/Horario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller3/target/classes/aed/Recordatorio.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller3/target/classes/aed/Recordatorio.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller3/target/test-classes/aed/AgendaTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller3/target/test-classes/aed/AgendaTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller3/target/test-classes/aed/ArregloRedimensionableTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller3/target/test-classes/aed/ArregloRedimensionableTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller4/target/classes/aed/Iterador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller4/target/classes/aed/Iterador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller4/target/classes/aed/ListaEnlazada$ListaIterador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller4/target/classes/aed/ListaEnlazada$ListaIterador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller4/target/classes/aed/ListaEnlazada$Nodo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller4/target/classes/aed/ListaEnlazada$Nodo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller4/target/classes/aed/ListaEnlazada.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller4/target/classes/aed/ListaEnlazada.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller4/target/classes/aed/Secuencia.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller4/target/classes/aed/Secuencia.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller4/target/test-classes/aed/ListaEnlazadaTests$1Punto2D.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller4/target/test-classes/aed/ListaEnlazadaTests$1Punto2D.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../taller4/target/test-classes/aed/ListaEnlazadaTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../taller4/target/test-classes/aed/ListaEnlazadaTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/aed/ABB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aed/ABB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/aed/ABB$ABB_Iterador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/aed/ABB$ABB_Iterador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/aed/ABB.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/aed/ABB.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../practicas/Conjunto Acotado/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../practicas/Conjunto Acotado/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../practicas/prueba/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../practicas/prueba/src/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="789b13b9-0231-4349-8cdc-441eee891c89" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,17 +21,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.ABBTests.eliminar_elemento_con_un_descendiente.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ABBTests.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/astro/Documents/algoritmos2/practicas/Conjunto Acotado&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Prueba.executor": "Run",
+    "JUnit.ABBTests.eliminar_elemento_con_un_descendiente.executor": "Run",
+    "JUnit.ABBTests.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/astro/Documents/algoritmos2/practicas/Conjunto Acotado",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Prueba">
     <configuration name="Prueba" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Prueba" />
@@ -131,6 +99,7 @@
       <workItem from="1721333103754" duration="53000" />
       <workItem from="1721333192073" duration="117000" />
       <workItem from="1721335537985" duration="9000" />
+      <workItem from="1721335943467" duration="169000" />
     </task>
     <servers />
   </component>

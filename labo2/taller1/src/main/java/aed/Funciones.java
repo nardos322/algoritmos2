@@ -113,4 +113,6 @@ class Funciones {
         return esPrefijo(s1Invertido,s2Invertido);
 
     }
+
+    
 }
