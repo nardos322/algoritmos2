@@ -11,6 +11,7 @@ class Funciones {
 
     boolean esPar(int n) {
         return n % 2 == 0;
+
     }
 
     boolean esBisiesto(int n) {
