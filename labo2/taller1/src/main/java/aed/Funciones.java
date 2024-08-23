@@ -16,7 +16,6 @@ class Funciones {
 
     boolean esBisiesto(int n) {
         return n % 4 == 0 && n % 100 != 0 || n % 400 == 0;
-
     }
 
     int factorialIterativo(int n) {
