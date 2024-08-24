@@ -113,7 +113,6 @@ class Funciones {
         for(int i = s1.length() - 1; i >= 0; i-- ){
             s1Invertido += s1.charAt(i);
         }
-
         return esPrefijo(s1Invertido,s2Invertido);
 
     }
