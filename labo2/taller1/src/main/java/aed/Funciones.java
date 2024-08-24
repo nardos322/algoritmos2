@@ -21,22 +21,17 @@ class Funciones {
 
     int factorialIterativo(int n) {
         int res = 1;
-
         for(int i = 1; i <= n; i++) {
             res *= i;
-
         }
-
         return res;
     }
 
     int factorialRecursivo(int n) {
-
         if (n == 0) {
             return 1;
         } else {
             return n * factorialRecursivo(n-1);
-
         }
 
     }
