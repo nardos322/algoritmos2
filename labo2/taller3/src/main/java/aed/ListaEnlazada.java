@@ -120,27 +120,23 @@ public class ListaEnlazada<T> implements Secuencia<T> {
             this.iterador = primero;
         }
         public boolean haySiguiente() {
-            if(longitud == 0){
+            if(longitud == 0) {
                 return false;
             }
-            if(iterador == ultimo){
-                return iterador != null;
-            }else if( iterador == null){
-                return false;
-            }else {
-                return iterador.siguiente != null;
+            if(iterador == ultimo) {
+                return true;
             }
+            return iterador != null && iterador.siguiente != null;
         }
 
         public boolean hayAnterior() {
-            if(longitud == 0){
+            if(longitud == 0) {
                 return false;
             }
-            if(iterador == null){
-                return ultimo.anterior != null;
-            } else {
-                return iterador.anterior != null;
+            if (iterador == null) {
+                return true;
             }
+            return  iterador != null && iterador.anterior != null;
         }
 
         public T siguiente() {
@@ -149,12 +145,11 @@ public class ListaEnlazada<T> implements Secuencia<T> {
             return valor;
         }
 
-
         public T anterior() {
             if (iterador == null) {
                 iterador = ultimo;
                 return iterador.valor;
-            }else{
+            } else {
                 iterador = iterador.anterior;
                 return iterador.valor;
             }
