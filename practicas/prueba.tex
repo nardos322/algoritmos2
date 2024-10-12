@@ -1,0 +1,59 @@
+\documentclass{article}
+\input{AEDmacros}
+
+\begin{document}
+
+\begin{proc}{hayCamino}{\In distancias: \TLista{\TLista{\ent}}, \In desde: \ent, \In hasta: \ent}{\bool}
+    \requiere{\longitud{distancias} > 0}
+    \requiere{esCuadrada(distancias) \land esSimetrica(distancias) \land diagonalNula(distancias)}
+    \requiere{\paraTodo[unalinea]{i}{\ent}{0 \leq i <\longitud{distancias} \implicaLuego
+    todosPositivos(distancias[i])}}
+    \asegura{res = true \Iff \existe[unalinea]{s}{\TLista{\ent}}{s[0] = desde  \land s[\longitud{s} - 1] = hasta} \land \\
+    \paraTodo[unalinea]{i}{\ent}{0 \leq i < \longitud{s} \implicaLuego 0 \leq s[i] < \longitud{distancias}} \land \\
+    \paraTodo[unalinea]{i}{\ent}{0 \leq i < \longitud{s} - 1 \implicaLuego hayCaminoDirecto(distancias, s[i], s[i + 1])}}
+\end{proc}
+
+
+\begin{proc}{cantidadCaminosNSaltos}{\Inout conexion: \TLista{\TLista{\ent}}, \In n: \ent}{}
+    \requiere{n > 1}
+    \requiere{conexion = conexion_0}
+    \requiere{esCuadrada(conexion) \land esSimetrica(conexion) \land diagonalNula(conexion)}
+    \requiere{\paraTodo[unalinea]{i}{\ent}{0 \leq i <\longitud{conexion} \implicaLuego
+    cerosYUnos(conexion[i])}}
+    \asegura{\existe[unalinea]{s}{\TLista{\TLista{\TLista{\ent}}}}{\longitud{s} = n \land s[0] = conexion[0]} \land \\
+    \paraTodo[unalinea]{i}{\ent}{0 \leq i < n \implicaLuego \longitud{s[i]} = \longitud{conexion} \land esCuadrada(s[i])} \land \\
+    \paraTodo[unalinea]{i}{\ent}{0 \leq i < n \implicaLuego esMult(conexion_0, s[i-1], s[i]) \land conexion = s[n-1]}}
+\end{proc}
+
+\begin{proc}{caminoMinimo}{\In origen: \ent, \In destino: \ent, \In distancias: \TLista{\TLista{\ent}}}{\TLista{\TLista{\ent}}}
+    \requiere{\longitud{distancias} > 0}
+    \requiere{esCuadrada(distancias) \land esSimetrica(distancias) \land diagonalNula(distancias)}
+    \requiere{\paraTodo[unalinea]{i}{\ent}{0 \leq i <\longitud{distancias} \implicaLuego
+    todosPositivos(distancias[i])}}
+    \asegura{\longitud{res} = 0 \Iff \paraTodo[unalinea]{s}{\TLista{\ent}}{\neg (s[0] = origen \land s[\longitud{s} - 1] = destino)} \land \\
+    \paraTodo[unalinea]{i}{\ent}{0 \leq i < \longitud{s} \implicaLuego 0 \leq s[i] < \longitud{distancias}} \land \\
+    \paraTodo[unalinea]{i}{\ent}{0 \leq i < \longitud{s}-1 \implicaLuego hayCaminoDirecto(distancias, s[i], s[i+1])}}
+    \asegura{\longitud{res} > 0 \implica \longitud{res} > 1 \implicaLuego (res[0] = origen \land res[\longitud{res}-1] = destino) \land \\
+    \paraTodo[unalinea]{i}{\ent}{\longitud{res} \implicaLuego 0 \leq res[i] < \longitud{distancias}} \land \\
+    \paraTodo[unalinea]{i}{\ent}{\longitud{res} - 1 \implicaLuego hayCaminoDirecto(distancias, res[i], res[i+1])}}
+    \asegura{\longitud{res} > 1 \implicaLuego \paraTodo[unalinea]{s}{\TLista{\ent}}{s[0] = origen \land s[\longitud{s} - 1] = destino} \land \\
+    \paraTodo[unalinea]{i}{\ent}{0 \leq i < \longitud{s} \implicaLuego 0 \leq s[i] < \longitud{distancias}} \land \\
+    \paraTodo[unalinea]{i}{\ent}{0 \leq i <\longitud{s} - 1 \implicaLuego hayCaminoDirecto(distancias, s[i], s[i+1]) \land \\ sumaDist(distancias, s) 
+    \geq sumaDist(distancias, res)}}
+\end{proc}
+
+\pred{diagonalNula}{matriz:  \TLista{\TLista{\ent}}}{\paraTodo[unalinea]{i,j}{\ent}{0 \leq i,j < \longitud{matriz} \land i = j
+\implicaLuego matriz[i][j] = 0}}
+
+\pred{esSimetrica}{matriz: \TLista{\TLista{\ent}}}{\paraTodo[unalinea]{i,j}{\ent}{
+0 \leq i,j < \longitud{matriz} \implicaLuego matriz[i][j] = matriz[j][i]}}
+
+\pred{todosPositivos}{m: \TLista{\ent}}{\paraTodo[unalinea]{i}{\ent}{
+0 \leq i < \longitud{m} \implicaLuego m[i] \geq 0}}
+
+\pred{cerosYUnos}{s: \TLista{\ent}}{\paraTodo[unalinea]{i}{\ent}{
+0 \leq i < \longitud{s} \implicaLuego s[i] = 0 \lor s[i] = 1}}
+
+
+
+\end{document}
