@@ -30,26 +30,29 @@ public class ListaEnlazada<T> implements Secuencia<T> {
         Nodo nodo = new Nodo(elem);
         nodo.siguiente = primero;
         longitud += 1;
-        if (longitud == 1) {
+        if (primero == null && ultimo == null) {
             primero = nodo;
             ultimo = nodo;
         } else {
-           primero.anterior = nodo;
+            nodo.siguiente = primero;
+            primero.anterior = nodo;
+            primero = nodo;
         }
-        primero = nodo;
     }
 
     public void agregarAtras(T elem) {
         Nodo nodo = new Nodo(elem);
         nodo.anterior = ultimo;
         longitud += 1;
-        if (longitud == 1) {
+        if (primero == null && ultimo == null) {
             primero = nodo;
             ultimo = nodo;
         } else {
-            ultimo.siguiente = nodo;
+           nodo.anterior = ultimo;
+           ultimo.siguiente = nodo;
+           ultimo = nodo;
         }
-        ultimo = nodo;
+
     }
 
     public T obtener(int i) {
@@ -62,26 +65,25 @@ public class ListaEnlazada<T> implements Secuencia<T> {
 
     public void eliminar(int i) {
         Nodo eliminar = primero;
+        longitud -= 1;
         for (int j = 0; j < i; j++) {
             eliminar = eliminar.siguiente;
         }
-        if (eliminar.anterior != null && eliminar.siguiente != null) {
-            eliminar.anterior.siguiente = eliminar.siguiente;
-            eliminar.siguiente.anterior = eliminar.anterior;
-            longitud -= 1;
-        } else if (eliminar.anterior == null && eliminar.siguiente != null) {
-            primero = eliminar.siguiente;
-            primero.anterior = null;
-            longitud -= 1;
-        } else if (eliminar.anterior != null && eliminar.siguiente == null) {
-            ultimo = eliminar.anterior;
-            ultimo.siguiente = null;
-            longitud -= 1;
-        } else {
+        if (primero == ultimo) {
             primero = null;
             ultimo = null;
-            longitud -= 1;
         }
+        else if (eliminar == primero) {
+            primero = eliminar.siguiente;
+            primero.anterior = null;
+        } else if (eliminar == ultimo) {
+            ultimo = eliminar.anterior;
+            ultimo.siguiente = null;
+        } else {
+            eliminar.anterior.siguiente = eliminar.siguiente;
+            eliminar.siguiente.anterior = eliminar.anterior;
+        }
+
     }
 
     public void modificarPosicion(int indice, T elem) {
@@ -115,7 +117,7 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     private class ListaIterador implements Iterador<T> {
         private Nodo iterador;
         ListaIterador(){
-            this.iterador = primero;
+            iterador = primero;
         }
         public boolean haySiguiente() {
             if(longitud == 0) {
