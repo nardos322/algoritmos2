@@ -1,3 +1,13 @@
 /labo/*/target/
 /labo/taller5/estudiantes/target/
 /TP2/estudiantes/target
+
+*
+# No ignorar archivos .tex en cualquier subcarpeta
+!**/*.tex
+
+# No ignorar archivos .pdf en cualquier subcarpeta
+!**/*.pdf
+
+# No ignorar el archivo .gitignore
+!.gitignore

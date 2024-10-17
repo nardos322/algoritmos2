@@ -47,7 +47,7 @@ class ArregloRedimensionableDeRecordatorios {
         this.longitud = vector.longitud;
         for(int i = 0; i < this.longitud; i++){
             this.recordatorios[i] = vector.recordatorios[i];
-        }
+    }
     }
 
     public ArregloRedimensionableDeRecordatorios copiar() {

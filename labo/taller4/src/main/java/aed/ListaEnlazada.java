@@ -81,24 +81,19 @@ public class ListaEnlazada<T> implements Secuencia<T> {
         if(nodoActual.anterior != null && nodoActual.siguiente != null){
             nodoActual.anterior.siguiente = nodoActual.siguiente;
             nodoActual.siguiente.anterior = nodoActual.anterior;
-
             this.longitud -=1;
         } else if(nodoActual.anterior == null && nodoActual.siguiente != null) {
             this.primero = nodoActual.siguiente;
             this.primero.anterior = null;
-           
             this.longitud -=1;
         } else if (nodoActual.anterior != null && nodoActual.siguiente == null) {
             this.ultimo = nodoActual.anterior;
             this.ultimo.siguiente = null;
-           
             this.longitud -=1;
         } else {
             this.primero = null;
             this.ultimo = null;
             this.longitud -=1;
-            
-        
         }
         
        
@@ -161,18 +156,13 @@ public class ListaEnlazada<T> implements Secuencia<T> {
                 return false;
             }
             if(iterador == ultimo){
-        
                 return iterador != null;
             }else if( iterador == null){
                 return false;
             }else {
                 return iterador.siguiente != null;
             }
-        
-            
-        
-        
-	        
+
         }
         
         public boolean hayAnterior() {
@@ -184,27 +174,22 @@ public class ListaEnlazada<T> implements Secuencia<T> {
             } else {
                 return iterador.anterior != null;
             }
-	        
         }
 
         public T siguiente() {
             T valor = iterador.valor;
 	        iterador = iterador.siguiente;
-            
             return valor;
         }
         
 
         public T anterior() {
-	        
-           
             if (iterador == null) {
                 return ultimo.valor;
             }else{
                 iterador = iterador.anterior;
                 return iterador.valor;
             }
-            
         }
     }
 
