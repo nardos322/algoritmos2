@@ -10,5 +10,6 @@
 # No ignorar archivos .pdf en cualquier subcarpeta
 !**/*.pdf
 
+
 # No ignorar el archivo .gitignore
 !.gitignore
