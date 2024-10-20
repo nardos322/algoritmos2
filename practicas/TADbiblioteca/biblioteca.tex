@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper,12pt]{article}
 \input{AEDmacros}
 
 \begin{document}
@@ -25,7 +25,7 @@ obs data: dict$<$estante: \ent, libros: \TLista{\ent}$>$ \\
     \requiere{b = b_0}
     \requiere{estante \in b.data \land posicion \in b.data[estante]}
     \asegura{b_0.data = setKey(b_0.data, \hspace{2px} b_0.data[estante], \hspace{2px} subseq(b_0.data[estante],\hspace{2px} 0,\hspace{2px} posicion) ++ \\
-    subseq(b_0.data[estante],\hspace{2px} posicion+1,\hspace{2px} \longitud{b_0.data[estante]}) ++ [0])}
+    \hspace*{52px}subseq(b_0.data[estante],\hspace{2px} posicion+1,\hspace{2px} \longitud{b_0.data[estante]}) ++ [0])}
     \asegura{\longitud{b.data[estante]} = \longitud{b_0.data[estante]}}
 \end{proc}    
 \begin{proc}{conocerLibro}{\In b: Biblioteca, \In estante: \ent, \In posicion: \ent}{\ent}
