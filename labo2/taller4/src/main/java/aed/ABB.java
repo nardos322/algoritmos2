@@ -7,7 +7,7 @@ import java.util.*;
 public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     private Nodo raiz;
     private int cardinal;
-    private int altura;
+
 
     private class Nodo {
         T valor;
@@ -26,7 +26,6 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     public ABB() {
         raiz = null;
         cardinal = 0;
-        altura = 0;
     }
 
     public int cardinal() {
@@ -153,19 +152,41 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         raiz = eliminarRecursivo(raiz, elem);
     }
 
+    private String toStringRecursivo(Nodo nodo) {
+        StringBuilder arbol = new StringBuilder();
+        if(cardinal == 1) {
+            return arbol.append(nodo.valor).append("}").toString();
+        }
+        else if(sucesor(nodo) == null){
+            return nodo.valor + "}";
+        } else {
+            arbol.append(nodo.valor).append(",").append(toStringRecursivo(sucesor(nodo)));
+
+        }
+        return arbol.toString();
+
+    }
     public String toString(){
-        throw new UnsupportedOperationException("No implementada aun");
+        if(cardinal == 0) {
+            return "{}";
+        }
+        Nodo minimo = encontrarMinimo(raiz);
+        return "{"+ toStringRecursivo(minimo);
+
     }
 
     private class ABB_Iterador implements Iterador<T> {
-        private Nodo _actual;
+        private Nodo _actual = encontrarMinimo(raiz);
 
         public boolean haySiguiente() {            
-            throw new UnsupportedOperationException("No implementada aun");
+            return sucesor(_actual) != null;
         }
     
         public T siguiente() {
-            throw new UnsupportedOperationException("No implementada aun");
+            T valor = _actual.valor;
+            _actual = sucesor(_actual);
+            return valor;
+
         }
     }
 
