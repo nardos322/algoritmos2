@@ -87,7 +87,6 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         if(elem.compareTo(nodo.valor) < 0) {
             return busquedaRecursiva(nodo.left, elem);
         }
-
         return busquedaRecursiva(nodo.right, elem);
     }
     public boolean pertenece(T elem){
