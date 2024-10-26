@@ -1,4 +1,7 @@
-
+/labo/*/target/
+/labo/taller5/estudiantes/target/
+/TP2/estudiantes/target
+**/target/
 # No ignorar archivos .tex en cualquier subcarpeta
 !**/*.tex
 
