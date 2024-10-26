@@ -70,7 +70,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         return nodo;
     }
     public void insertar(T elem){
-        if(pertenece(elem) != true){
+        if(!pertenece(elem)){
             raiz = insertar(raiz, elem);
             cardinal += 1;
         }
@@ -128,19 +128,16 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
           actual.right = eliminarRecursivo(actual.right, valor);
       } else {
           //nodo encontrado se procede a eliminar
-
           //caso 1: Nodo sin hijos
           if(actual.left == null && actual.right == null) {
               return null;
           }
-
           //Caso 2: Nodo con 1 hijo
           else if (actual.left == null) {
               return actual.right;
           } else if (actual.right == null) {
               return actual.left;
           }
-
           //Caso 3: Modo con 2 hijos
           else {
               //Encontramos sucesor
