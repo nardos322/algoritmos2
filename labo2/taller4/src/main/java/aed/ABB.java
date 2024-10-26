@@ -154,14 +154,13 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
 
     private String toStringRecursivo(Nodo nodo) {
         StringBuilder arbol = new StringBuilder();
-        if(cardinal == 1) {
-            return arbol.append(nodo.valor).append("}").toString();
+        if (nodo == null) {
+            return "";
         }
-        else if(sucesor(nodo) == null){
-            return nodo.valor + "}";
-        } else {
-            arbol.append(nodo.valor).append(",").append(toStringRecursivo(sucesor(nodo)));
-
+        arbol.append(nodo.valor);
+        Nodo sucesor = sucesor(nodo);
+        if (sucesor != null) {
+            arbol.append(",").append(toStringRecursivo(sucesor));
         }
         return arbol.toString();
 
@@ -171,7 +170,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
             return "{}";
         }
         Nodo minimo = encontrarMinimo(raiz);
-        return "{"+ toStringRecursivo(minimo);
+        return "{"+ toStringRecursivo(minimo) +"}";
 
     }
 
