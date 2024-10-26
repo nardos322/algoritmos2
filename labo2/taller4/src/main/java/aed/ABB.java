@@ -152,7 +152,6 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     public void eliminar(T elem){
         cardinal -= 1;
         raiz = eliminarRecursivo(raiz, elem);
-
     }
 
     public String toString(){
