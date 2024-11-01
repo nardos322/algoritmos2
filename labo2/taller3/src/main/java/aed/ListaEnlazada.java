@@ -44,12 +44,11 @@ public class ListaEnlazada<T> implements Secuencia<T> {
         longitud += 1;
         if (primero == null && ultimo == null) {
             primero = nodo;
-            ultimo = nodo;
         } else {
            nodo.anterior = ultimo;
            ultimo.siguiente = nodo;
-           ultimo = nodo;
         }
+        ultimo = nodo;
 
     }
 
@@ -81,6 +80,9 @@ public class ListaEnlazada<T> implements Secuencia<T> {
             eliminar.anterior.siguiente = eliminar.siguiente;
             eliminar.siguiente.anterior = eliminar.anterior;
         }
+        eliminar.siguiente = null;
+        eliminar.anterior = null;
+        eliminar = null;
 
     }
 
@@ -101,15 +103,15 @@ public class ListaEnlazada<T> implements Secuencia<T> {
     
     @Override
     public String toString() {
-        String mensaje = "[";
+        StringBuilder mensaje = new StringBuilder("[");
         for (int i = 0; i < longitud; i++) {
             if (i != longitud - 1) {
-                mensaje += obtener(i).toString() + ", ";
+                mensaje.append(obtener(i).toString()).append(", ");
             } else {
-                mensaje += obtener(i).toString() + "]";
+                mensaje.append(obtener(i).toString()).append("]");
             }
         }
-        return mensaje;
+        return mensaje.toString();
     }
 
     private class ListaIterador implements Iterador<T> {
@@ -134,7 +136,7 @@ public class ListaEnlazada<T> implements Secuencia<T> {
             if (iterador == null) {
                 return true;
             }
-            return  iterador != null && iterador.anterior != null;
+            return iterador.anterior != null;
         }
 
         public T siguiente() {
@@ -146,11 +148,10 @@ public class ListaEnlazada<T> implements Secuencia<T> {
         public T anterior() {
             if (iterador == null) {
                 iterador = ultimo;
-                return iterador.valor;
             } else {
                 iterador = iterador.anterior;
-                return iterador.valor;
             }
+            return iterador.valor;
         }
 
     }
