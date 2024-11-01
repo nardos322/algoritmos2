@@ -1,0 +1,116 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage[linesnumbered, ruled, vlined]{algorithm2e}
+\usepackage{../caratuladc/caratula}
+\input{../AEDmacros}
+\fecha{2do cuatrimestre 2024}
+\titulo{Guia 6}
+\materia{Algoritmos y Estructuras de Datos}
+\integrante{Prieto, Nahuel}{646/20}{enprieto@dc.uba.ar}
+
+\graphicspath{{../static/}}
+
+\lstset{
+    morekeywords={then}                  % Define 'then' como palabra clave
+}
+
+
+\begin{document}
+    \maketitle
+    \subsection*{Ejercicio 1}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.9\textwidth]{../static/ejercicio1.png}
+    \end{figure}
+    \begin{itemize}
+        \item Escriba los algoritmos para los siguientes procs y calcule su complejidad
+        \begin{itemize}
+            \item agregarAtras
+            \item obtener
+            \item eliminar
+            \item concatenar
+        \end{itemize}
+        \item Escriba el invariante de representación para este módulo en castellano \\ \\
+
+        \item Dado el siguiente invrep, indiquie si es correcto. En caso de no serlo, corrijalo:
+
+        \pred{InvRep}{l: NodoLista$<$T$>$}{
+            accesible(l.primero,l.ultimo) \land largoOK(l.primero,l.longitud)
+        }
+        \pred{largoOK}{n: NodoLista$<$T$>$, largo: \ent}{
+            (n = null \land largo = 0) \lor (largoOK(n.siguiente, largo-1))
+        }
+        \pred{accesible}{$n_0$: NodoLista$<$T$>$, $n_1$: NodoLista$<$T$>$}{
+            n_1 = n_0 \lor (n_0.siguiente \neq null \yLuego accesible(n_0.siguiente, n_1))
+        }
+
+    \end{itemize}
+    \subsection*{Solucion Ejercicio 1:}
+    \begin{proc}{agregarAtras}{\Inout l: ListaEnlazada$<$T$>$, \In e: T}{}
+        \begin{lstlisting}
+            nodo := new Nodo < T >
+            nodo.valor := e
+            if l.longitud = = 0 then
+                l.primero := nodo
+                l.ultimo := nodo
+            else
+                l.ultimo.siguiente := nodo
+                l.ultimo := nodo
+            endif
+            l.longitud ++
+        \end{lstlisting}
+    \end{proc}
+
+    \begin{proc}{obtener}{\In l: ListaEnlazada$<$T$>$, \In i \ent}{T}
+        \begin{lstlisting}
+            var actual := l.primero
+            var j := 0
+            while j < i do
+                actual := actual.siguiente
+                j++
+            endwhile
+            return actual.valor
+        \end{lstlisting}
+    \end{proc}
+    \begin{proc}{eliminar}{\Inout l: ListaEnlazada$<$T$>$, \In i \ent}{}
+        \begin{lstlisting}
+            var eliminar := l.primero
+            var j := 0
+            while j < i do
+                eliminar := eliminar.siguiente
+                j ++
+            endwhile
+            if l.longitud = = 1 then
+                l.primero := null
+                l.ultimo = null
+            else if eliminar = = l.primero
+                l.primero := eliminar.siguiente
+            else
+                anterior := l.primero
+                var k := 0
+                while k < i - 1 do
+                    anterior := anterior.siguiente
+                    k ++
+                endwhile
+                if eliminar = = l.ultimo then
+                    l.ultimo := anterior
+                    l.ultimo.siguiente := null
+                else
+                    anterior.siguiente := eliminar.siguiente
+                endif
+                anterior := null
+                anterior.siguiente = null
+            endif
+            eliminar.siguiente := null
+            eliminar := null
+        \end{lstlisting}
+    \end{proc}
+
+
+
+
+
+
+
+\end{document}
