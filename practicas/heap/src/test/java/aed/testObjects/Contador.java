@@ -1,4 +1,4 @@
-package aed;
+package aed.testObjects;
 
 public class Contador {
     private int valor;

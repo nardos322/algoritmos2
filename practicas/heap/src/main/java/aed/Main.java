@@ -4,18 +4,31 @@ import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
-        PrimoComparatorMin prioridadPrimoMin = new PrimoComparatorMin();
-        PrimoComparatorMax prioridadPrimoMax = new PrimoComparatorMax();
-        Comparator<Empleado> empleadoComparador = new EmpleadoComparator();
-        Heap<Empleado> heap = new Heap<>(empleadoComparador);
-        heap.insertar(new Empleado("Nahuel", "IT", 28));
-        heap.insertar(new Empleado("Sol", "IT", 19));
-        heap.insertar(new Empleado("Maria", "Ventas", 19));
-        heap.insertar(new Empleado("Maria", "Soporte Tecnico", 19));
+            PrimoComparatorMin prioridadPrimoMin = new PrimoComparatorMin();
+            PrimoComparatorMax prioridadPrimoMax = new PrimoComparatorMax();
+            Comparator<Empleado> empleadoComparador = new EmpleadoComparator();
+            Comparator<Contador> contadorComparador = new ContadorComparator();
+            Heap<Contador> heap = new Heap<>(contadorComparador);
+
+            Contador contador = new Contador(10);
+            Contador contador2 = new Contador(12);
+
+            HeapHandle<Contador> handle1 = heap.insertar(contador);
+            HeapHandle<Contador> handle2 = heap.insertar(contador2);
+
+            contador.incrementar();
+            contador.incrementar();
+            contador.incrementar();
+            heap.updatePriority(handle1);
+            contador.decrementar();
+            contador.decrementar();
+            heap.updatePriority(handle1);
 
 
+            System.out.println(heap.toString());
+            System.out.println(heap.root());
 
-        System.out.println(heap.toString());
+
 
 
 

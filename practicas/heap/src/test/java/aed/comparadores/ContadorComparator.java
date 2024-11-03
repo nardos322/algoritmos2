@@ -1,4 +1,6 @@
-package aed;
+package aed.comparadores;
+import aed.Contador;
+
 import java.util.Comparator;
 
 public class ContadorComparator implements Comparator<Contador> {

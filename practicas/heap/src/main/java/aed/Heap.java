@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 
 public class Heap<T> {
-    private ArrayList<T> heap;
+    private ArrayList<HeapHandle<T>> heap;
     private Comparator<? super T> comparator;
 
     public Heap() {
@@ -24,7 +24,7 @@ public class Heap<T> {
         comparator = null;
         int i = 0;
         while(i < array.length) {
-            heap.add(array[i]);
+            heap.add(new HeapHandle<>(array[i]));
             i++;
         }
         buildHeap();
@@ -35,7 +35,7 @@ public class Heap<T> {
         this.comparator = comparator;
         int i = 0;
         while (i < array.length) {
-            heap.add(array[i]);
+            heap.add(new HeapHandle<>(array[i]));
             i++;
         }
         buildHeap();
@@ -53,36 +53,51 @@ public class Heap<T> {
         return 2*i + 2;
     }
 
-    public void insertar (T e) {
+    public HeapHandle<T> insertar (T e) {
         if(e == null) {
             throw new NullPointerException("no se puede insertar valores nulos");
         }
-        heap.add(e);
-        heapifyUp(heap.size() - 1);
+        HeapHandle<T> handle = new HeapHandle<>(e);
+        heap.add(handle);
+        int index = heap.size() - 1;
+        handle.setIndex(index);
+        heapifyUp(index);
+        return handle;
 
     }
 
-    public T raiz(){
+    public T root(){
         if(heap.isEmpty()) {
             throw new IllegalStateException("Heap vacio");
         }
-        return heap.get(0);
+
+        return heap.get(0).getElement();
     }
 
     public T extraer() {
         if(heap.isEmpty()) {
             throw new IllegalStateException("El heap esta vacio");
         }
-        T raiz = heap.get(0);
-        T ultimoElemento = heap.get(tamaño() - 1);
-        heap.set(0, ultimoElemento);
-        heap.remove(tamaño() - 1);
+        HeapHandle<T> rootHandle = heap.get(0);
+        HeapHandle<T> lastHandleElement = heap.remove(heap.size() - 1);
+        T rootElement = rootHandle.getElement();
+
         if(!heap.isEmpty()) {
+            heap.set(0,lastHandleElement);
+            lastHandleElement.setIndex(0);
             heapifyDown(0);
         }
+        rootHandle.setIndex(-1);
+        return rootElement;
 
-        return raiz;
+    }
 
+    public void updatePriority(HeapHandle<T> handle){
+       int index = handle.getIndex();
+        if (index != -1) {
+            heapifyUp(index);
+            heapifyDown(index);
+        }
     }
 
     private void heapifyUp(int index) {
@@ -90,7 +105,7 @@ public class Heap<T> {
             return;
         }
         int padreIndex = padre(index);
-        if (compare(heap.get(index), heap.get(padreIndex)) > 0) {
+        if (compare(heap.get(index).getElement(), heap.get(padreIndex).getElement()) > 0) {
             swap(index, padreIndex);
             heapifyUp(padreIndex);
         }
@@ -102,12 +117,12 @@ public class Heap<T> {
         int rightIndex = right(index);
 
         // verifica si el hijo izquiero es mayor que el nodo actual
-        if(leftIndex < heap.size() && compare(heap.get(leftIndex), heap.get(mayorIndex)) > 0) {
+        if(leftIndex < heap.size() && compare(heap.get(leftIndex).getElement(), heap.get(mayorIndex).getElement()) > 0) {
             mayorIndex = leftIndex;
         }
 
         // verifica si el hijo derecho es mayor el nodo mas grande encontrado hasta ahora
-        if(rightIndex < heap.size() && compare(heap.get(rightIndex), heap.get(mayorIndex)) > 0) {
+        if(rightIndex < heap.size() && compare(heap.get(rightIndex).getElement(), heap.get(mayorIndex).getElement()) > 0) {
             mayorIndex = rightIndex;
         }
 
@@ -124,10 +139,17 @@ public class Heap<T> {
         }
     }
 
-    private void swap(int i, int j) {
-        T elemento = heap.get(i);
-        heap.set(i, heap.get(j));
-        heap.set(j, elemento);
+    private void swap(int index1, int index2) {
+        // Intercambiar los handles en el array
+        HeapHandle<T> handle1 = heap.get(index1);
+        HeapHandle<T> handle2 = heap.get(index2);
+
+        heap.set(index1, handle2);
+        heap.set(index2, handle1);
+
+        // Actualizar los índices en los handles
+        handle1.setIndex(index2);
+        handle2.setIndex(index1);
     }
 
     private int compare(T first, T second) {

@@ -23,6 +23,35 @@ public class HeapTest {
         });
     }
     @Test
+    public void testHeapifyUp() {
+        Heap<Integer> heap = new Heap<>();
+        heap.insertar(10);
+        heap.insertar(20);
+        heap.insertar(5);
+        heap.insertar(30);
+
+        assertEquals(30, heap.extraer());
+        assertEquals(20, heap.extraer());
+        assertEquals(10, heap.extraer());
+        assertEquals(5, heap.extraer());
+
+    }
+
+    @Test
+    public void testHeapifyDown() {
+        Heap<Integer> heap = new Heap<>();
+        heap.insertar(30);
+        heap.insertar(20);
+        heap.insertar(10);
+        heap.insertar(5);
+
+        assertEquals(30, heap.extraer());
+        assertEquals(20, heap.extraer());
+        assertEquals(10, heap.extraer());
+        assertEquals(5, heap.extraer());
+    }
+
+    @Test
     public void testInsertAndExtractIntegers() {
         Heap<Integer> heap = new Heap<>();
         heap.insertar(10);
@@ -30,6 +59,77 @@ public class HeapTest {
         heap.insertar(5);
 
         assertEquals(20, heap.extraer());
+        assertEquals(10, heap.extraer());
+        assertEquals(5, heap.extraer());
+    }
+
+    @Test
+    public void testHeapWithNegativeNumbers() {
+        Heap<Integer> heap = new Heap<>();
+        heap.insertar(-10);
+        heap.insertar(-20);
+        heap.insertar(-5);
+        heap.insertar(-30);
+
+        assertEquals(-5, heap.extraer());
+        assertEquals(-10, heap.extraer());
+        assertEquals(-20, heap.extraer());
+        assertEquals(-30, heap.extraer());
+    }
+
+    @Test
+    public void testHeapWithMixedNumbers() {
+        Heap<Integer> heap = new Heap<>();
+        heap.insertar(10);
+        heap.insertar(-20);
+        heap.insertar(5);
+        heap.insertar(-30);
+
+        assertEquals(10, heap.extraer());
+        assertEquals(5, heap.extraer());
+        assertEquals(-20, heap.extraer());
+        assertEquals(-30, heap.extraer());
+    }
+
+    @Test
+    public void testHeapWithDuplicateNumbers() {
+        Heap<Integer> heap = new Heap<>();
+        heap.insertar(10);
+        heap.insertar(10);
+        heap.insertar(5);
+        heap.insertar(5);
+
+        assertEquals(10, heap.extraer());
+        assertEquals(10, heap.extraer());
+        assertEquals(5, heap.extraer());
+        assertEquals(5, heap.extraer());
+    }
+
+    @Test
+    public void testHeapSize() {
+        Heap<Integer> heap = new Heap<>();
+        heap.insertar(10);
+        heap.insertar(20);
+        heap.insertar(5);
+
+        assertEquals(3, heap.tamaño());
+        heap.extraer();
+        assertEquals(2, heap.tamaño());
+        heap.extraer();
+        assertEquals(1, heap.tamaño());
+        heap.extraer();
+        assertEquals(0, heap.tamaño());
+    }
+
+    @Test
+    public void testMultipleInsertionsAndExtractions() {
+        Heap<Integer> heap = new Heap<>();
+        heap.insertar(10);
+        heap.insertar(20);
+        heap.insertar(5);
+        assertEquals(20, heap.extraer());
+        heap.insertar(15);
+        assertEquals(15, heap.extraer());
         assertEquals(10, heap.extraer());
         assertEquals(5, heap.extraer());
     }
@@ -102,6 +202,17 @@ public class HeapTest {
             int actual = heap.extraer();
             assertTrue(anterior >= actual);
             anterior = actual;
+        }
+    }
+
+    @Test
+    public void testLargeNumberOfElements() {
+        Heap<Integer> heap = new Heap<>();
+        for (int i = 0; i < 1000; i++) {
+            heap.insertar(i);
+        }
+        for (int i = 999; i >= 0; i--) {
+            assertEquals(i, heap.extraer());
         }
     }
 
@@ -195,9 +306,28 @@ public class HeapTest {
         assertEquals("Delfina", heap.extraer().getNombre());
         assertEquals("Nahuel", heap.extraer().getNombre());
 
+    }
 
+    @Test
+    public void testUpdatePriorityMutables(){
+        Comparator<Contador> contadorComparador = new ContadorComparator();
+        Heap<Contador> heap = new Heap<>(contadorComparador);
 
+        Contador contador = new Contador(10);
+        Contador contador2 = new Contador(12);
 
+        HeapHandle<Contador> handle1 = heap.insertar(contador);
+        HeapHandle<Contador> handle2 = heap.insertar(contador2);
 
+        contador.incrementar();
+        contador.incrementar();
+        contador.incrementar();
+        heap.updatePriority(handle1);
+        assertEquals(handle1.getElement(), heap.root());
+
+        contador.decrementar();
+        contador.decrementar();
+        heap.updatePriority(handle1);
+        assertEquals(handle2.getElement(),heap.root());
     }
 }
