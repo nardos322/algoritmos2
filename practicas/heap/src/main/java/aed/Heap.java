@@ -1,4 +1,4 @@
-package org.example;
+package aed;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -27,6 +27,7 @@ public class Heap<T> {
             heap.add(array[i]);
             i++;
         }
+        buildHeap();
     }
 
     public Heap(T[] array, Comparator<? super T> comparator) {
@@ -37,6 +38,7 @@ public class Heap<T> {
             heap.add(array[i]);
             i++;
         }
+        buildHeap();
     }
 
     private int padre(int i) {
@@ -52,6 +54,9 @@ public class Heap<T> {
     }
 
     public void insertar (T e) {
+        if(e == null) {
+            throw new NullPointerException("no se puede insertar valores nulos");
+        }
         heap.add(e);
         heapifyUp(heap.size() - 1);
 
@@ -69,9 +74,9 @@ public class Heap<T> {
             throw new IllegalStateException("El heap esta vacio");
         }
         T raiz = heap.get(0);
-        T ultimoElemento = heap.get(heap.size() - 1);
+        T ultimoElemento = heap.get(tamaño() - 1);
         heap.set(0, ultimoElemento);
-        heap.remove(heap.size() - 1);
+        heap.remove(tamaño() - 1);
         if(!heap.isEmpty()) {
             heapifyDown(0);
         }
@@ -102,13 +107,20 @@ public class Heap<T> {
         }
 
         // verifica si el hijo derecho es mayor el nodo mas grande encontrado hasta ahora
-        if(leftIndex < heap.size() && compare(heap.get(rightIndex), heap.get(mayorIndex)) > 0) {
+        if(rightIndex < heap.size() && compare(heap.get(rightIndex), heap.get(mayorIndex)) > 0) {
             mayorIndex = rightIndex;
         }
 
         if(mayorIndex != index) {
             swap(index, mayorIndex);
             heapifyDown(mayorIndex);
+        }
+    }
+
+    private void buildHeap(){
+        int ultimoNoHoja = (tamaño() / 2) - 1;
+        for(int i = ultimoNoHoja; i >= 0; i-- ){
+            heapifyDown(i);
         }
     }
 
@@ -128,6 +140,10 @@ public class Heap<T> {
     }
     public String toString() {
         return heap.toString();
+    }
+
+    public int tamaño(){
+        return heap.size();
     }
 
 
