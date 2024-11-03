@@ -31,7 +31,7 @@ public class Trie<T> {
         return size;
     }
 
-    //Método para insertar una palabra en el trie
+    // Metodo para insertar una palabra en el trie
     public void insert(String key, T value) {
 
         if (root == null) {
@@ -93,6 +93,10 @@ public class Trie<T> {
         }
         return null;
 
+    }
+
+    public boolean contains(String key) {
+        return get(key) != null;
     }
 
 
