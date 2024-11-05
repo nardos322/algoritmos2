@@ -53,7 +53,7 @@ public class Heap<T> {
         return 2*i + 2;
     }
 
-    public HeapHandle<T> insertar (T e) {
+    public HeapHandle<T> encolar(T e) {
         if(e == null) {
             throw new NullPointerException("no se puede insertar valores nulos");
         }
@@ -74,7 +74,7 @@ public class Heap<T> {
         return heap.get(0).getElement();
     }
 
-    public T extraer() {
+    public T desencolar() {
         if(heap.isEmpty()) {
             throw new IllegalStateException("El heap esta vacio");
         }
@@ -92,7 +92,7 @@ public class Heap<T> {
 
     }
 
-    public void updatePriority(HeapHandle<T> handle){
+    public void cambiarPrioridad(HeapHandle<T> handle){
        int index = handle.getIndex();
         if (index != -1) {
             heapifyUp(index);
@@ -168,5 +168,8 @@ public class Heap<T> {
         return heap.size();
     }
 
+    public boolean vacia(){
+        return heap.size() == 0;
+    }
 
 }
