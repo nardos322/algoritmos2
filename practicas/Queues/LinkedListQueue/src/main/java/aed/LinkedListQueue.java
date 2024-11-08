@@ -1,7 +1,9 @@
 package aed;
 import aed.ListaEnlazada;
 
-public class LinkedListQueue<T> {
+import java.util.Iterator;
+
+public class LinkedListQueue<T> implements Iterable<T>{
     private ListaEnlazada<T> elementos;
 
     public LinkedListQueue(){
@@ -37,4 +39,8 @@ public class LinkedListQueue<T> {
     }
 
 
+    @Override
+    public Iterator<T> iterator() {
+        return elementos.iterator();
+    }
 }
