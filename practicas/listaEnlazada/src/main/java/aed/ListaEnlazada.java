@@ -110,6 +110,10 @@ public class ListaEnlazada<T> implements Iterable<T>{
         return primero.valor;
     }
 
+    public boolean vacia() {
+        return longitud == 0;
+    }
+
     public String toString() {
         if (longitud == 0) {
             return "[]";
