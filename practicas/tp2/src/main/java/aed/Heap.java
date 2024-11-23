@@ -7,14 +7,14 @@ import java.util.Comparator;
 
 public class Heap<T> {
     private ArrayList<HeapHandle<T>> heap;
-    private Comparator<T> comparator;
+    private Comparator<? super T> comparator;
 
     public Heap() {
         heap = new ArrayList<>();
         comparator = null;
     }
 
-    public Heap(Comparator<T> comparator) {
+    public Heap(Comparator<? super T> comparator) {
         heap = new ArrayList<>();
         this.comparator = comparator;
     }
@@ -30,23 +30,12 @@ public class Heap<T> {
         buildHeap();
     }
 
-    public Heap(T[] array, Comparator<T> comparator) {
+    public Heap(T[] array, Comparator<? super T> comparator) {
         heap = new ArrayList<>(array.length);
         this.comparator = comparator;
         int i = 0;
         while (i < array.length) {
             heap.add(new HeapHandle<>(array[i]));
-            i++;
-        }
-        buildHeap();
-    }
-
-    public Heap(HeapHandle[] array, Comparator<T> comparator) {
-        heap = new ArrayList<>(array.length);
-        this.comparator = comparator;
-        int i = 0;
-        while (i < array.length) {
-            heap.add(array[i]);
             i++;
         }
         buildHeap();
@@ -105,7 +94,6 @@ public class Heap<T> {
 
     public void cambiarPrioridad(HeapHandle<T> handle){
        int index = handle.getIndex();
-   
         if (index != -1) {
             heapifyUp(index);
             heapifyDown(index);
@@ -151,7 +139,6 @@ public class Heap<T> {
         }
     }
 
-
     private void swap(int index1, int index2) {
         // Intercambiar los handles en el array
         HeapHandle<T> handle1 = heap.get(index1);
@@ -165,29 +152,12 @@ public class Heap<T> {
         handle2.setIndex(index1);
     }
 
-    public void eliminar(HeapHandle<T> handle) {
-        int index = handle.getIndex();
-        int lastIndex = tamaño() - 1;
-        if (index != lastIndex){
-            swap(index, lastIndex);
-            heap.get(lastIndex).setIndex(-1);
-            heap.remove(lastIndex);
-            heapifyDown(index);
-            heapifyUp(index);
-        } else {
-            heap.get(lastIndex).setIndex(-1);
-            heap.remove(lastIndex);
-
-        }
-
-    }
-
     private int compare(T first, T second) {
         if (comparator != null) {
             return comparator.compare(first, second);
         } else {
             // Invertimos el orden para que el mayor tenga mayor prioridad
-            return ((Comparable<T>) first).compareTo(second);
+            return ((Comparable<? super T>) first).compareTo(second);
         }
     }
     public String toString() {

@@ -8,10 +8,6 @@ public class HeapHandle<T>{
         this.element = element;
         this.index = -1;
     }
-    public HeapHandle(T element, int i){
-        this.element = element;
-        this.index = i;
-    }
 
     public T getElement(){
         return element;
