@@ -29,7 +29,7 @@ class SortTest {
 
         // Ordenar usando nuestra implementación de QuickSort
         long startTime = System.currentTimeMillis();
-        Sort.randomQuickSort(largeArray);
+        Sort.heapSort(largeArray);
         long endTime = System.currentTimeMillis();
         System.out.println("Ordenamiento completado en: " + (endTime - startTime) + " ms");
 

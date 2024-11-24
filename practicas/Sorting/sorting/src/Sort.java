@@ -139,5 +139,52 @@ public class Sort {
         array[j] = temp;
     }
 
+    public static <T> void mergeSort(T[] array, Comparator<T> comparator) {
+        mergeSort(array, 0, array.length - 1, comparator);
+    }
+
+    public static <T extends Comparable<T>> void mergeSort(T[] array) {
+        mergeSort(array, Comparable::compareTo);
+    }
+
+    private static <T> void mergeSort(T[] A, int p, int r, Comparator<T> comparator) {
+        if (p < r) {
+            int q = (p + r) / 2;
+            mergeSort(A, p, q, comparator);   // Ordenar la primera mitad
+            mergeSort(A, q + 1, r, comparator);   // Ordenar la segunda mitad
+            merge(A, p, q, r, comparator);   // Mezclar ambas mitadas
+        }
+    }
+
+    private static <T> void merge(T[] A, int p, int q, int r, Comparator<T> comparator ) {
+        int n1 = q - p + 1;  // Tamaño del subarreglo izquiero
+        int n2 = r - q;     // Tamaño del subarreglo derecho
+
+        T[] left = (T[]) new Object[n1 + 1]; // Espacio adional para el sentinela
+        T[] right = (T[]) new Object[n2 + 1]; // Espacio adional para el sentinela
+
+        for (int i = 0; i < n1; i++) {
+            left[i] = A[p + i];
+        }
+        for (int j = 0; j < n2; j++) {
+            right[j] = A[q + 1 + j];
+        }
+
+        // Agregar Sentinelas al final de ambos subarreglos
+        left[n1] = null;
+        right[n2] = null;
+
+        // Mezclar los subarreglos en el arreglo original
+        int i = 0, j = 0;
+        for (int k = p; k < r; k++) {
+            if (right[j] == null || left[i] != null && comparator.compare(left[i], right[j]) <= 0) {
+                A[k] = left[i];
+                i++;
+            } else {
+                A[k] = right[j];
+                j++;
+            }
+        }
+    }
 
 }
