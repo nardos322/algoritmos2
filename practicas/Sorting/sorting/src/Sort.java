@@ -1,5 +1,6 @@
 import java.util.Comparator;
 
+
 public class Sort {
 
     public static <T> void selectionSort(T[] array, Comparator<T> comparator) {
@@ -81,8 +82,16 @@ public class Sort {
         quickSort(A, 0, A.length - 1, comparator);
     }
 
+    public static <T> void randomQuickSort(T[] A, Comparator<T> comparator) {
+        randomQuickSort(A, 0, A.length - 1, comparator);
+    }
+
     public static <T extends Comparable<T>> void quickSort(T[] A) {
         quickSort(A, Comparable::compareTo);
+    }
+
+    public static <T extends  Comparable<T>> void randomQuickSort(T[] A) {
+        randomQuickSort(A, Comparable::compareTo);
     }
 
     private static <T> void quickSort(T[]A, int p, int r, Comparator<T> comparator) {
@@ -93,10 +102,18 @@ public class Sort {
         }
     }
 
+    private static <T> void randomQuickSort(T[] A, int p, int r, Comparator<T> comparator) {
+        if (p < r) {
+            int q = randomPartition(A, p, r, comparator);
+            randomQuickSort(A, p, q - 1, comparator);
+            randomQuickSort(A, q + 1, r, comparator);
+        }
+    }
+
     private static <T> int partition(T[] A, int p, int r, Comparator<T> comparator) {
         T pivot = A[r];  // Elegir pivote como el ultimo elemento
         int i = p - 1;  // Inicializar el limite para los elementos menores o iguales
-        for (int j = p; j < r - 1; j++) {
+        for (int j = p; j < r; j++) {
             if (comparator.compare(A[j], pivot) <= 0) { // Si el elemento actual es menor o igual al pivot
                 i = i + 1;
                 swap(A,i, j);
@@ -104,6 +121,16 @@ public class Sort {
         }
         swap(A,i + 1, r); // colocar el pivot en su posicion final
         return i + 1;  // Retornar la posicion final del pivot
+    }
+
+    private static <T> int randomPartition(T[] A, int p, int r, Comparator<T> comparator) {
+        int i = random(p, r);
+        swap(A, r, i);
+        return partition(A, p, r, comparator);
+    }
+
+    private static int random(int p, int r) {
+        return (int)(Math.random() * (r - p + 1)) + p;// Generar un número aleatorio entre p y r
     }
 
     private static <T> void swap(T[] array, int i, int j) {
