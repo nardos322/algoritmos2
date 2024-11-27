@@ -176,8 +176,8 @@ public class Sort {
 
         // Mezclar los subarreglos en el arreglo original
         int i = 0, j = 0;
-        for (int k = p; k < r; k++) {
-            if (right[j] == null || left[i] != null && comparator.compare(left[i], right[j]) <= 0) {
+        for (int k = p; k <= r; k++) {
+            if (right[j] == null || (left[i] != null && comparator.compare(left[i], right[j]) <= 0)) {
                 A[k] = left[i];
                 i++;
             } else {
@@ -185,6 +185,40 @@ public class Sort {
                 j++;
             }
         }
+    }
+
+    public static <T> void countingSort(T[] A, T[] B, KeyExtractor<T> keyExtractor , int k) {
+        int[] C = new int[k + 1];  // Arreglo de conteo
+
+        // Paso 1: Inicializar el arreglo de conteo
+        for (int i = 0; i < k; i++) {
+            C[i] = 0;
+        }
+
+        // Paso 2: Contar las frecuencias de las claves en A
+        for (int j = 0; j < A.length; j++) {
+            int key = keyExtractor.getKey(A[j]); // Usar KeyExtractpr para obtener la clave
+            C[key] ++;
+        }
+
+        // Paso 3: Conteo acumulado
+        for (int i = 1; i <= k; i++) {
+            C[i] = C[i] + C[i - 1];
+        }
+
+        // Paso 4: Construir el arreglo de salida B
+        for (int j = A.length - 1; j >= 0; j--) {
+            T element = A[j];
+            int key = keyExtractor.getKey(element);
+            B[C[key] - 1] = element;
+            C[key]--;
+        }
+    }
+
+
+    @FunctionalInterface
+    public interface KeyExtractor<T> {
+        int getKey(T element); // Extrae la clave
     }
 
 }
