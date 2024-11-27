@@ -1,4 +1,5 @@
 import java.util.Comparator;
+import java.util.*;
 
 
 public class Sort {
@@ -215,10 +216,59 @@ public class Sort {
         }
     }
 
+    public static <T> void radixSort(T[]A, KeyExtractor<T> keyExtractor, int d) {
+        T[] B = (T[]) new Object[A.length];
+        for (int i = 1; i <= d; i++) {
+            int finalExp = i;
+            KeyExtractor<T> digitExtractor = (element) -> getDigit(keyExtractor.getKey(element), finalExp);
+            countingSort(A, B, digitExtractor, 10);
+
+            for (int j = 0; j < A.length; j++) {
+                A[j] = B[j];
+            }
+        }
+    }
+
+    public static <T> void bucketSort(T[]A, KeyExtractorDouble<T> keyExtractor) {
+        LinkedList<T>[] B = new LinkedList[A.length];
+        int n = A.length;
+        for (int i = 0; i < n; i++) {
+            B[i] = new LinkedList<>();
+        }
+
+        for (T value : A) {
+            double key = keyExtractor.getKey(value); // Extraer clave entre [0, 1)
+            int bucketIndex = (int) (key * n); // Calcular la cubeta
+            B[bucketIndex].add(value);
+        }
+
+        for (int i = 0; i < n; i++) {
+            Collections.sort(B[i], Comparator.comparing(keyExtractor::getKey));
+        }
+
+        int index = 0;
+        for (int i = 0; i < n; i++) {
+            for (T value : B[i]) {
+                A[index++] = value;
+            }
+        }
+    }
+
+
+    // Método para extraer el dígito en una posición específica
+    private static int getDigit(int number, int position) {
+        return (number / (int) Math.pow(10, position - 1)) % 10; // Obtener el dígito de la posición 'position'
+    }
 
     @FunctionalInterface
     public interface KeyExtractor<T> {
         int getKey(T element); // Extrae la clave
     }
+
+    public interface KeyExtractorDouble<T> {
+        double getKey(T element); // Retorna un valor en [0, 1)
+    }
+
+
 
 }

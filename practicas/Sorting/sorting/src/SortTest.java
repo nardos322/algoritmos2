@@ -20,7 +20,7 @@ class SortTest {
 
         // Generar un arreglo aleatorio
         Integer[] largeArray = generateRandomArray(size);
-
+        Sort.KeyExtractor<Integer> keyExtractor = x -> x;
         // Copiar el arreglo para comparar después
         Integer[] expectedArray = Arrays.copyOf(largeArray, largeArray.length);
 
@@ -29,7 +29,7 @@ class SortTest {
 
         // Ordenar usando nuestra implementación de QuickSort
         long startTime = System.currentTimeMillis();
-        Sort.mergeSort(largeArray);
+        Sort.radixSort(largeArray, keyExtractor, 8);
         long endTime = System.currentTimeMillis();
         System.out.println("Ordenamiento completado en: " + (endTime - startTime) + " ms");
 
@@ -62,7 +62,7 @@ class SortTest {
 
         // Ordenar usando nuestra implementación de QuickSort
         long startTime = System.currentTimeMillis();
-        Sort.randomQuickSort(randomStrings);
+        Sort.mergeSort(randomStrings);
         long endTime = System.currentTimeMillis();
 
         System.out.println("Ordenamiento completado en: " + (endTime - startTime) + " ms");
