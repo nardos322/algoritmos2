@@ -35,6 +35,15 @@ public class Sort {
         }
     }
 
+    // Método auxiliar para listas porque despues uso este algortimo para bucketSort y tengo que tener una version que reciba ListaEnlazada como parametro
+    public static <T> void insertionSort(List<T> list, Comparator<T> comparator) {
+        T[] array = (T[]) list.toArray();
+        insertionSort(array,comparator);
+        for (int i = 0; i < list.size(); i++) {
+            list.set(i, array[i]);
+        }
+    }
+
     public static <T extends  Comparable<T>> void insertionSort(T[] array) {
         insertionSort(array, Comparable::compareTo);
     }
@@ -188,7 +197,7 @@ public class Sort {
         }
     }
 
-    public static <T> void countingSort(T[] A, T[] B, KeyExtractor<T> keyExtractor , int k) {
+    public static <T> void countingSort(T[] A, T[] B, KeyExtractor<T, Integer> keyExtractor , int k) {
         int[] C = new int[k + 1];  // Arreglo de conteo
 
         // Paso 1: Inicializar el arreglo de conteo
@@ -216,11 +225,11 @@ public class Sort {
         }
     }
 
-    public static <T> void radixSort(T[]A, KeyExtractor<T> keyExtractor, int d) {
+    public static <T> void radixSort(T[]A, KeyExtractor<T, Integer> keyExtractor, int d) {
         T[] B = (T[]) new Object[A.length];
         for (int i = 1; i <= d; i++) {
             int finalExp = i;
-            KeyExtractor<T> digitExtractor = (element) -> getDigit(keyExtractor.getKey(element), finalExp);
+            KeyExtractor<T, Integer> digitExtractor = (element) -> (Integer) getDigit(keyExtractor.getKey(element), finalExp);
             countingSort(A, B, digitExtractor, 10);
 
             for (int j = 0; j < A.length; j++) {
@@ -229,7 +238,7 @@ public class Sort {
         }
     }
 
-    public static <T> void bucketSort(T[]A, KeyExtractorDouble<T> keyExtractor) {
+    public static <T> void bucketSort(T[]A, KeyExtractor<T, Double> keyExtractor) {
         LinkedList<T>[] B = new LinkedList[A.length];
         int n = A.length;
         for (int i = 0; i < n; i++) {
@@ -243,7 +252,7 @@ public class Sort {
         }
 
         for (int i = 0; i < n; i++) {
-            Collections.sort(B[i], Comparator.comparing(keyExtractor::getKey));
+            insertionSort(B[i], Comparator.comparing(keyExtractor::getKey));
         }
 
         int index = 0;
@@ -261,13 +270,10 @@ public class Sort {
     }
 
     @FunctionalInterface
-    public interface KeyExtractor<T> {
-        int getKey(T element); // Extrae la clave
+    public interface KeyExtractor<T, R> {
+        R getKey(T element); // Extrae la clave
     }
 
-    public interface KeyExtractorDouble<T> {
-        double getKey(T element); // Retorna un valor en [0, 1)
-    }
 
 
 
