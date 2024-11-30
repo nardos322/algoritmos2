@@ -198,39 +198,42 @@ public class Sort {
     }
 
     public static <T> void countingSort(T[] A, T[] B, KeyExtractor<T, Integer> keyExtractor , int k) {
-        int[] C = new int[k + 1];  // Arreglo de conteo
-
+        int offset = 1;
+        int[] C = new int[k + offset];  // Arreglo de conteo
         // Paso 1: Inicializar el arreglo de conteo
-        for (int i = 0; i < k; i++) {
+        for (int i = 0; i < k + offset; i++) {
             C[i] = 0;
         }
-
         // Paso 2: Contar las frecuencias de las claves en A
         for (int j = 0; j < A.length; j++) {
-            int key = keyExtractor.getKey(A[j]); // Usar KeyExtractpr para obtener la clave
+            int key = keyExtractor.getKey(A[j]) + offset; // Usar KeyExtractpr para obtener la clave
+            System.out.println("Elemento: " + A[j] + ", Clave: " + keyExtractor.getKey(A[j]) + ", Clave ajustada: " + key);
+
             C[key] ++;
         }
-
+        System.out.println("Contenido de C después de contar frecuencias: " + Arrays.toString(C));
+        System.out.println(C[0]);
         // Paso 3: Conteo acumulado
-        for (int i = 1; i <= k; i++) {
+        for (int i = 1; i < k + offset; i++) {
+
             C[i] = C[i] + C[i - 1];
         }
-
         // Paso 4: Construir el arreglo de salida B
         for (int j = A.length - 1; j >= 0; j--) {
             T element = A[j];
-            int key = keyExtractor.getKey(element);
+            int key = keyExtractor.getKey(element) + offset;
             B[C[key] - 1] = element;
             C[key]--;
         }
     }
 
+
     public static <T> void radixSort(T[]A, KeyExtractor<T, Integer> keyExtractor, int d) {
         T[] B = (T[]) new Object[A.length];
-        for (int i = 1; i <= d; i++) {
+        for (int i = 0; i < d; i++) {
             int finalExp = i;
-            KeyExtractor<T, Integer> digitExtractor = (element) -> (Integer) getDigit(keyExtractor.getKey(element), finalExp);
-            countingSort(A, B, digitExtractor, 10);
+
+            countingSort(A, B, (element) -> keyExtractor.getKey(element, finalExp), 256);
 
             for (int j = 0; j < A.length; j++) {
                 A[j] = B[j];
@@ -272,9 +275,11 @@ public class Sort {
     @FunctionalInterface
     public interface KeyExtractor<T, R> {
         R getKey(T element); // Extrae la clave
+
+        default R getKey(T element, int position) {
+            return getKey(element);
+        }
     }
-
-
 
 
 }

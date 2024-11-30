@@ -12,8 +12,8 @@ public class Main {
         Persona[] personas = {
                 new Persona("Juan", 25),
                 new Persona("Ana", 30),
-                new Persona("Luis", 22),
-                new Persona ("Alejandro", 16)
+                new Persona("Luis", 16),
+                new Persona ("Alejandro", 13)
         };
         Persona[] salida = new Persona[personas.length];
         int charIndex = 255;
@@ -34,10 +34,34 @@ public class Main {
 //            System.out.println(n.nombre);
 //        }
 
+//        Sort.KeyExtractor<Persona, Integer> extractor = p -> p.edad;
+//        Sort.radixSort(personas, extractor, 3);
 
+        String[] strings = {"apple", "zoe","anana", "cherry"};
 
+        Sort.KeyExtractor<String, Integer> strExtractor = new Sort.KeyExtractor<>() {
 
-        Sort.countingSort(personas, salida, p -> (int) p.nombre.charAt(0),255);
+            @Override
+            public Integer getKey(String element) {
+                return element.length();
+            }
+
+            @Override
+            public Integer getKey(String s, int position) {
+                // Implementación para posiciones específicas
+                if (position < s.length()) {
+                    return (int) s.charAt(position); // Valor ASCII
+                } else {
+                    return -1; // Valor neutro
+                }
+            }
+        };
+
+        Sort.radixSort(strings, strExtractor, 6);
+
+        for (String n : strings) {
+            System.out.println(n);
+        }
 
 /*
         for (int i = 2; i >= 0; i--) {
@@ -46,9 +70,9 @@ public class Main {
         }
 */
 
-        for (Persona n : salida) {
-            System.out.println(n);
-        }
+//        for (Persona n : personas) {
+//            System.out.println(n);
+//        }
 
     }
 }
