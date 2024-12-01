@@ -25,54 +25,15 @@ public class Main {
         Sort.KeyExtractor<String,Integer> stringLength = s -> {
             return (int) s.length();
         };
-        //Sort.countingSort(personas, salida, p -> {return charIndex < p.nombre.length() ? (int) p.nombre.charAt(charIndex) : 0;},  255);
-
-
-//        Sort.radixSort(personas,p -> {return charIndex < p.nombre.length() ? (int) p.nombre.charAt(charIndex) : 0;},255);
-//
-//       for(Persona n : personas) {
-//            System.out.println(n.nombre);
-//        }
-
-//        Sort.KeyExtractor<Persona, Integer> extractor = p -> p.edad;
-//        Sort.radixSort(personas, extractor, 3);
 
         String[] strings = {"apple", "zoe","anana", "cherry"};
 
-        Sort.KeyExtractor<String, Integer> strExtractor = new Sort.KeyExtractor<>() {
+        Sort.radixSort(strings, s -> (int) s.charAt(3), 6, 256);
 
-            @Override
-            public Integer getKey(String element) {
-                return element.length();
-            }
+        System.out.println(Arrays.toString(strings));
 
-            @Override
-            public Integer getKey(String s, int position) {
-                // Implementación para posiciones específicas
-                if (position < s.length()) {
-                    return (int) s.charAt(position); // Valor ASCII
-                } else {
-                    return -1; // Valor neutro
-                }
-            }
-        };
 
-        Sort.radixSort(strings, strExtractor, 6);
 
-        for (String n : strings) {
-            System.out.println(n);
-        }
-
-/*
-        for (int i = 2; i >= 0; i--) {
-            int index = i;
-            Sort.countingSort(personas, salida, p -> {return index < p.nombre.length() ? (int) p.nombre.charAt(index) : 0;},255);
-        }
-*/
-
-//        for (Persona n : personas) {
-//            System.out.println(n);
-//        }
 
     }
 }

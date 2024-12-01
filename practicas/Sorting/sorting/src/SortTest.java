@@ -96,92 +96,119 @@ class SortTest {
         return sb.toString();
     }
 
-//    @Test
-//    public void ordenarStringsConCounting() {// voy a ordenar Strings tomando su primer letra
-//        String[] C = {"holaaaaa", "naranja", "azul"};
-//        String[] B = new String[C.length];
-//        int charIndex = 0;
-//        Sort.KeyExtractor<String, Integer> stringKeyExtractor = s -> {
-//            return charIndex < s.length() ? (int) s.charAt(charIndex) : 0;
-//        };
-//        String[] expected = {"azul", "holaaaaa", "naranja"};
-//
-//        Sort.countingSort(C, B,stringKeyExtractor, 255);
-//        assertArrayEquals(expected, B);
-//
-//    }
+    @Test
+    public void ordenarStringsConCounting() {// voy a ordenar Strings tomando su primer letra
+        String[] C = {"holaaaaa", "naranja", "azul"};
+        String[] B = new String[C.length];
+        int charIndex = 0;
+        Sort.KeyExtractor<String, Integer> stringKeyExtractor = s -> {
+            return charIndex < s.length() ? (int) s.charAt(charIndex) : 0;
+        };
+        String[] expected = {"azul", "holaaaaa", "naranja"};
 
-//    @Test
-//    public void ordenarStringsPorLengthConCounting() {
-//        String[] C = {"holaaaaa", "naranja", "azul"};
-//        String[] B = new String[C.length];
-//        Sort.KeyExtractor<String, Integer> stringLength = s -> {return (int) s.length();};
-//        String[] expected = {"azul", "naranja", "holaaaaa"};
-//
-//        Sort.countingSort(C, B, stringLength, 255);
-//        assertArrayEquals(expected, B);
-//
-//    }
-//
-//    @Test
-//    public void ordenarPersonasPorEdad() {
-//        Persona p1 = new Persona("Juan", 25);
-//        Persona p2 = new Persona("Ana", 30);
-//        Persona p3 = new Persona("Luis", 22);
-//        Persona p4 = new Persona("Alejandro", 18);
-//        Persona[] personas = {p1, p2, p3, p4};
-//        Persona[] salida = new Persona[personas.length];
-//        Sort.KeyExtractor<Persona, Integer> edad = p -> p.edad;
-//        Persona[] expected = {p4, p3, p1, p2};
-//
-//        Sort.countingSort(personas, salida, edad, 80);
-//
-//        assertArrayEquals(expected, salida);
-//
-//    }
-//
-//    @Test
-//    public void ordernarPersonasPorPrimerLetra() {
-//        Persona p1 = new Persona("Juan", 25);
-//        Persona p2 = new Persona("Ana", 30);
-//        Persona p3 = new Persona("Luis", 22);
-//        Persona p4 = new Persona("Alejandro", 18);
-//        Persona[] personas = {p1, p2, p3, p4};
-//        Persona[] salida = new Persona[personas.length];
-//
-//
-//        Sort.countingSort(personas, salida, p -> {return (int) p.nombre.charAt(0);},255);
-//
-//
-//        Persona[] expected = {p2, p4, p1, p3};
-//        assertArrayEquals(expected, salida);
-//    }
-//
-//    @Test
-//    public void odernarTuplasIntConRadix() {
-//        Tupla<Integer, Integer> t1 = new Tupla(3,50);
-//        Tupla<Integer, Integer> t2 = new Tupla(2,11);
-//        Tupla<Integer, Integer> t3 = new Tupla(3,42);
-//        Tupla<Integer, Integer> t4 = new Tupla(2,23);
-//
-//        Tupla[] tuplas = {t1, t2, t3, t4};
-//        Tupla[] expectedPrimerComp = {t2, t4, t1, t3};
-//        Tupla[] expectedTotal = {t2, t4, t3, t1};
-//
-//        // Ordena las tuplas solo por la primer componente
-//        Sort.radixSort(tuplas, (t) -> (Integer) t.first, 1);
-//        // Tuplas ordenadas de forma parcial, solo pro la primer componente
-//        assertArrayEquals(expectedPrimerComp, tuplas);  // [(2,11), (2,23), (3,50), (3,42)]
-//
-//
-//        // Ordena las tuplas tomando la segunda componente
-//        Sort.radixSort(tuplas, (t) -> (Integer) t.second, 2);
-//
-//        // Orden total de las tuplas ordenadas por primer y segunda compnente
-//        assertArrayEquals(expectedTotal, tuplas);    // [(2,11), (2,23), (3,50), (3,42)]
+        Sort.countingSort(C, B,stringKeyExtractor, 255);
+        assertArrayEquals(expected, B);
+
+    }
+
+    @Test
+    public void ordenarStringsPorLengthConCounting() {
+        String[] C = {"holaaaaa", "naranja", "azul"};
+        String[] B = new String[C.length];
+        Sort.KeyExtractor<String, Integer> stringLength = s -> {return (int) s.length();};
+        String[] expected = {"azul", "naranja", "holaaaaa"};
+
+        Sort.countingSort(C, B, stringLength, 255);
+        assertArrayEquals(expected, B);
+
+    }
+
+    @Test
+    public void ordenarPersonasPorEdad() {
+        Persona p1 = new Persona("Juan", 25);
+        Persona p2 = new Persona("Ana", 30);
+        Persona p3 = new Persona("Luis", 22);
+        Persona p4 = new Persona("Alejandro", 18);
+        Persona[] personas = {p1, p2, p3, p4};
+        Persona[] salida = new Persona[personas.length];
+        Sort.KeyExtractor<Persona, Integer> edad = p -> p.edad;
+        Persona[] expected = {p4, p3, p1, p2};
+
+        Sort.countingSort(personas, salida, edad, 80);
+
+        assertArrayEquals(expected, salida);
+
+    }
+
+    @Test
+    public void ordernarPersonasPorPrimerLetra() {
+        Persona p1 = new Persona("Juan", 25);
+        Persona p2 = new Persona("Ana", 30);
+        Persona p3 = new Persona("Luis", 22);
+        Persona p4 = new Persona("Alejandro", 18);
+        Persona[] personas = {p1, p2, p3, p4};
+        Persona[] salida = new Persona[personas.length];
 
 
-//    }
+        Sort.countingSort(personas, salida, p -> {return (int) p.nombre.charAt(0);},255);
+
+
+        Persona[] expected = {p2, p4, p1, p3};
+        assertArrayEquals(expected, salida);
+    }
+
+    @Test
+    public void odernarTuplasIntConRadix() {
+        Tupla<Integer, Integer> t1 = new Tupla(3,50);
+        Tupla<Integer, Integer> t2 = new Tupla(2,11);
+        Tupla<Integer, Integer> t3 = new Tupla(3,42);
+        Tupla<Integer, Integer> t4 = new Tupla(20,23);
+
+        Tupla[] tuplas = {t1, t2, t3, t4};
+        Tupla[] expectedPrimerComp = {t2, t4, t3, t1};
+        Tupla[] expectedTotal = {t2, t3, t1, t4};
+
+        Sort.KeyExtractor<Tupla, Integer> primerComp = new Sort.KeyExtractor<>() {
+            @Override
+            public Integer getKey(Tupla n) {
+                return (Integer) n.first;
+            }
+
+            @Override
+            public Integer getKey(Tupla n, int position) {
+                return ((Integer) n.first / (int) Math.pow(10, position)) % 10;
+            }
+        };
+
+        Sort.KeyExtractor<Tupla, Integer> segComp = new Sort.KeyExtractor<>() {
+            @Override
+            public Integer getKey(Tupla n) {
+                return (Integer) n.second;
+            }
+
+            @Override
+            public Integer getKey(Tupla n, int position) {
+                return ((Integer) n.second / (int) Math.pow(10, position)) % 10;
+            }
+        };
+
+
+        // Ordena las tuplas solo por la primer componente
+        Sort.radixSort(tuplas, segComp, 2,256);
+
+        // Tuplas ordenadas de forma parcial, solo pro la primer componente
+        assertArrayEquals(expectedPrimerComp, tuplas);  // [(2,11), (2,23), (3,42), (3,50)]
+
+
+        // Ordena las tuplas tomando la segunda componente
+
+       Sort.radixSort(tuplas, primerComp, 2, 256);
+       //Orden total de las tuplas ordenadas por primer y segunda compnente
+       assertArrayEquals(expectedTotal, tuplas);    // [(2,11), (2,23), (3,42), (3,50)]
+
+
+
+    }
 
     @Test
     public void ordenarNum3CifrasConRadix() {
@@ -199,8 +226,20 @@ class SortTest {
             }
         };
 
-        Sort.radixSort(num, numberExtractor, 3);
+        Sort.radixSort(num, numberExtractor, 3, 10);
         assertArrayEquals(expected, num);
     }
+
+    @Test
+    public void ordenarDoubleConBucket() {
+        Double[] x = {0.3, 0.1, 0.02, 0.4, 0.2};
+        Double[] expected = {0.02, 0.1, 0.2, 0.3, 0.4};
+
+        Sort.bucketSort(x, num -> num);
+
+        assertArrayEquals(expected, x);
+    }
+
+
 
 }

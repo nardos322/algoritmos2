@@ -198,42 +198,37 @@ public class Sort {
     }
 
     public static <T> void countingSort(T[] A, T[] B, KeyExtractor<T, Integer> keyExtractor , int k) {
-        int offset = 1;
-        int[] C = new int[k + offset];  // Arreglo de conteo
+        int[] C = new int[k];  // Arreglo de conteo
         // Paso 1: Inicializar el arreglo de conteo
-        for (int i = 0; i < k + offset; i++) {
+        for (int i = 0; i < k; i++) {
             C[i] = 0;
         }
         // Paso 2: Contar las frecuencias de las claves en A
         for (int j = 0; j < A.length; j++) {
-            int key = keyExtractor.getKey(A[j]) + offset; // Usar KeyExtractpr para obtener la clave
-            System.out.println("Elemento: " + A[j] + ", Clave: " + keyExtractor.getKey(A[j]) + ", Clave ajustada: " + key);
-
+            int key = keyExtractor.getKey(A[j]); // Usar KeyExtractpr para obtener la clave
             C[key] ++;
         }
-        System.out.println("Contenido de C después de contar frecuencias: " + Arrays.toString(C));
-        System.out.println(C[0]);
-        // Paso 3: Conteo acumulado
-        for (int i = 1; i < k + offset; i++) {
 
+        // Paso 3: Conteo acumulado
+        for (int i = 1; i < k; i++) {
             C[i] = C[i] + C[i - 1];
         }
         // Paso 4: Construir el arreglo de salida B
         for (int j = A.length - 1; j >= 0; j--) {
             T element = A[j];
-            int key = keyExtractor.getKey(element) + offset;
+            int key = keyExtractor.getKey(element);
             B[C[key] - 1] = element;
             C[key]--;
         }
     }
 
 
-    public static <T> void radixSort(T[]A, KeyExtractor<T, Integer> keyExtractor, int d) {
+    public static <T> void radixSort(T[]A, KeyExtractor<T, Integer> keyExtractor, int d, int k) {
         T[] B = (T[]) new Object[A.length];
         for (int i = 0; i < d; i++) {
             int finalExp = i;
 
-            countingSort(A, B, (element) -> keyExtractor.getKey(element, finalExp), 256);
+            countingSort(A, B, (element) -> keyExtractor.getKey(element, finalExp), k);
 
             for (int j = 0; j < A.length; j++) {
                 A[j] = B[j];
@@ -266,11 +261,50 @@ public class Sort {
         }
     }
 
+    public static void radixSortStrings(String[] arr) {
+        int maxLength = findMaxLength(arr);
 
-    // Método para extraer el dígito en una posición específica
-    private static int getDigit(int number, int position) {
-        return (number / (int) Math.pow(10, position - 1)) % 10; // Obtener el dígito de la posición 'position'
+        for (int pos = maxLength - 1; pos >= 0; pos--) {
+            countingSortByCharacter(arr, pos);
+        }
     }
+
+    static void countingSortByCharacter(String[] arr, int pos) {
+        int[] count = new int[256]; // Rango ASCII extendido
+        String[] output = new String[arr.length];
+
+        // Contar ocurrencias de caracteres
+        for (String str : arr) {
+            char ch = pos < str.length() ? str.charAt(pos) : 0; // Manejar cadenas más cortas
+            count[ch]++;
+        }
+
+        // Conteo acumulado
+        for (int i = 1; i < 256; i++) {
+            count[i] += count[i - 1];
+        }
+
+        // Construir el arreglo ordenado
+        for (int i = arr.length - 1; i >= 0; i--) {
+            char ch = pos < arr[i].length() ? arr[i].charAt(pos) : 0;
+            output[count[ch] - 1] = arr[i];
+            count[ch]--;
+        }
+
+        // Copiar a arr
+        System.arraycopy(output, 0, arr, 0, arr.length);
+    }
+
+    static int findMaxLength(String[] arr) {
+        int maxLength = 0; // Inicializa la longitud máxima como 0
+        for (String str : arr) {
+            if (str.length() > maxLength) {
+                maxLength = str.length(); // Actualiza si se encuentra una cadena más larga
+            }
+        }
+        return maxLength;
+    }
+
 
     @FunctionalInterface
     public interface KeyExtractor<T, R> {
