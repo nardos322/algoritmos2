@@ -264,6 +264,10 @@ public class Sort {
     public static void radixSortStrings(String[] arr) {
         int maxLength = findMaxLength(arr);
 
+        // obs con el otro radix, este radixSortStrings tiene el for invertido, esto me facilita ordenar strings de forma alfabetica
+        // por eso mejor los diferencie porque si queria hacer un radixSort general medio que se me complica mucho de esta manera puedo
+        // entender mejor la escencia del algoritmo "que es lo imporante", ya que si lo quiero hacer mas general, es decir que ordene "tuplas y strings de tal manera etd"
+        // entro ya en otro terreno que por lo menos en este momento no es importante, por ahora mejor separar los radix para diferente tipos de dato
         for (int pos = maxLength - 1; pos >= 0; pos--) {
             countingSortByCharacter(arr, pos);
         }
@@ -292,7 +296,10 @@ public class Sort {
         }
 
         // Copiar a arr
-        System.arraycopy(output, 0, arr, 0, arr.length);
+       // System.arraycopy(output, 0, arr, 0, arr.length);
+        for (int j = 0; j < arr.length; j++) {
+            arr[j] = output[j];
+        }
     }
 
     static int findMaxLength(String[] arr) {
@@ -304,6 +311,64 @@ public class Sort {
         }
         return maxLength;
     }
+
+    public static void radixSortInt(int[] arr) {
+        int max = findMax(arr); // Encuentra el número con más dígitos
+        int maxDigits = countDigits(max);
+
+        for (int exp = 1; max / exp > 0; exp *= 10) {
+            countingSortByDigit(arr, exp);
+        }
+    }
+
+    public static void countingSortByDigit(int[] arr, int exp) {
+        int[] output = new int[arr.length];
+        int[] count = new int[10]; // Contamos dígitos [0-9]
+
+        // Contar ocurrencias de dígitos
+        for (int i = 0; i < arr.length; i++) {
+            int digit = (arr[i] / exp) % 10;
+            count[digit]++;
+        }
+
+        // Conteo acumulado
+        for (int i = 1; i < 10; i++) {
+            count[i] += count[i - 1];
+        }
+
+        // Construir el arreglo ordenado
+        for (int i = arr.length - 1; i >= 0; i--) {
+            int digit = (arr[i] / exp) % 10;
+            output[count[digit] - 1] = arr[i];
+            count[digit]--;
+        }
+
+        // Copiar a arr
+        for (int j = 0; j < arr.length; j++) {
+            arr[j] = output[j];
+        }
+    }
+
+
+    static int findMax(int[] arr) {
+        int max = arr[0]; // Suponemos que el primer elemento es el máximo
+        for (int num : arr) {
+            if (num > max) {
+                max = num; // Actualizamos el máximo si encontramos uno mayor
+            }
+        }
+        return max;
+    }
+
+    static int countDigits(int num) {
+        int count = 0;
+        while (num != 0) {
+            num /= 10; // Dividimos el número por 10 para eliminar el último dígito
+            count++;   // Incrementamos el contador por cada dígito eliminado
+        }
+        return count;
+    }
+
 
 
     @FunctionalInterface
