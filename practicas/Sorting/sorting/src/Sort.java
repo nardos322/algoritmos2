@@ -260,13 +260,12 @@ public class Sort {
         }
     }
 
+    // obs con el otro radix, este radixSortStrings tiene el for invertido, esto me facilita ordenar strings de forma alfabetica
+    // por eso mejor los diferencie porque si queria hacer un radixSort general medio que se me complica mucho, de esta manera puedo
+    // entender mejor la escencia del algoritmo "que es lo imporante", ya que si lo quiero hacer mas general, es decir que ordene "tuplas y strings de tal manera etc.."
+    // entro ya en otro terreno que por lo menos en este momento no es importante, por ahora mejor separar los radix para diferente tipos de dato
     public static void radixSortStrings(String[] arr) {
         int maxLength = findMaxLength(arr);
-
-        // obs con el otro radix, este radixSortStrings tiene el for invertido, esto me facilita ordenar strings de forma alfabetica
-        // por eso mejor los diferencie porque si queria hacer un radixSort general medio que se me complica mucho de esta manera puedo
-        // entender mejor la escencia del algoritmo "que es lo imporante", ya que si lo quiero hacer mas general, es decir que ordene "tuplas y strings de tal manera etd"
-        // entro ya en otro terreno que por lo menos en este momento no es importante, por ahora mejor separar los radix para diferente tipos de dato
         for (int pos = maxLength - 1; pos >= 0; pos--) {
             countingSortByCharacter(arr, pos);
         }
