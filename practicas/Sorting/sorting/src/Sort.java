@@ -197,8 +197,9 @@ public class Sort {
         }
     }
 
-    public static <T> void countingSort(T[] A, T[] B, KeyExtractor<T, Integer> keyExtractor , int k) {
-        int[] C = new int[k];  // Arreglo de conteo
+    public static <T> void countingSort(T[] A, KeyExtractor<T, Integer> keyExtractor , int k) {
+        int[] C = new int[k + 1];  // Arreglo de conteo
+        T[] B = (T[]) new Object[A.length];
         // Paso 1: Inicializar el arreglo de conteo
         for (int i = 0; i < k; i++) {
             C[i] = 0;
@@ -210,7 +211,7 @@ public class Sort {
         }
 
         // Paso 3: Conteo acumulado
-        for (int i = 1; i < k; i++) {
+        for (int i = 1; i <= k; i++) {
             C[i] = C[i] + C[i - 1];
         }
         // Paso 4: Construir el arreglo de salida B
@@ -220,19 +221,17 @@ public class Sort {
             B[C[key] - 1] = element;
             C[key]--;
         }
+
+        for (int i = 0; i < A.length; i++) {
+            A[i] = B[i];
+        }
     }
 
 
     public static <T> void radixSort(T[]A, KeyExtractor<T, Integer> keyExtractor, int d, int k) {
-        T[] B = (T[]) new Object[A.length];
         for (int i = 0; i < d; i++) {
             int finalExp = i;
-
-            countingSort(A, B, (element) -> keyExtractor.getKey(element, finalExp), k);
-
-            for (int j = 0; j < A.length; j++) {
-                A[j] = B[j];
-            }
+            countingSort(A, (element) -> keyExtractor.getKey(element, finalExp), k);
         }
     }
 
