@@ -196,7 +196,7 @@ class SortTest {
         Sort.radixSort(tuplas, segComp, 2,256);
 
         // Tuplas ordenadas de forma parcial, solo pro la primer componente
-        assertArrayEquals(expectedPrimerComp, tuplas);  // [(2,11), (2,23), (3,42), (3,50)]
+       assertArrayEquals(expectedPrimerComp, tuplas);  // [(2,11), (2,23), (3,42), (3,50)]
 
 
         // Ordena las tuplas tomando la segunda componente
@@ -228,6 +228,41 @@ class SortTest {
         Sort.radixSort(num, numberExtractor, 3, 10);
         assertArrayEquals(expected, num);
     }
+
+    @Test
+    public void ordenarIntsConDiffLength(){
+        // uso el radix mas "generico" que hice para ver las diferencias, notar que la clave esta en
+        // como defino el keyExtractor ya que esta abstraccion es la clave para que el radixSort generico funcione poara otros tipos de datos
+        Sort.KeyExtractor<Integer, Integer> numberKeyExtractor = new Sort.KeyExtractor<>() {
+            @Override
+            public Integer getKey(Integer number) {
+                return number; // Método básico para simplemente devolver el número si no se usa posición.
+            }
+
+            @Override
+            public Integer getKey(Integer number, int position) {
+                // Calcula el dígito en la posición específica usando división y módulo.
+                int divisor = (int) Math.pow(10, position); // Divide por 10^position
+                return (number / divisor) % 10; // Obtén el dígito en la posición.
+            }
+        };
+        Integer[] d = {100, 33, 1424, 4, 10};
+        Integer[] expected = {4, 10, 33, 100, 1424};
+
+        Sort.radixSort(d, numberKeyExtractor, 4, 10);
+
+        assertArrayEquals(expected, d);
+
+        // ahora ordeno con el radixInt que hice que esta pensado especialmente para ordenar ints con diff length
+        int[] a = {423, 45, 1, 23,4212,25};
+        int[] expected2 = {1, 23, 25, 45, 423, 4212};
+
+        Sort.radixSortInt(a);
+
+        assertArrayEquals(expected2, a);
+
+    }
+
 
     @Test
     public void ordenarDoubleConBucket() {
