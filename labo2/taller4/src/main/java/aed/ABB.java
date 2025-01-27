@@ -13,13 +13,11 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         T valor;
         Nodo left;
         Nodo right;
-        Nodo padre;
 
         Nodo(T v) {
             valor = v;
             left = null;
             right = null;
-            padre  = null;
         }
     }
 
