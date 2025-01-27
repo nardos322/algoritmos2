@@ -177,7 +177,6 @@ public class Heap<T> {
         } else {
             heap.get(lastIndex).setIndex(-1);
             heap.remove(lastIndex);
-
         }
 
     }
