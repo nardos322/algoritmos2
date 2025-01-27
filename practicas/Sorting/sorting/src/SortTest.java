@@ -99,27 +99,26 @@ class SortTest {
     @Test
     public void ordenarStringsConCounting() {// voy a ordenar Strings tomando su primer letra
         String[] C = {"holaaaaa", "naranja", "azul"};
-        String[] B = new String[C.length];
+
         int charIndex = 0;
         Sort.KeyExtractor<String, Integer> stringKeyExtractor = s -> {
             return charIndex < s.length() ? (int) s.charAt(charIndex) : 0;
         };
         String[] expected = {"azul", "holaaaaa", "naranja"};
 
-        Sort.countingSort(C, B,stringKeyExtractor, 255);
-        assertArrayEquals(expected, B);
+        Sort.countingSort(C, stringKeyExtractor, 255);
+        assertArrayEquals(expected, C);
 
     }
 
     @Test
     public void ordenarStringsPorLengthConCounting() {
         String[] C = {"holaaaaa", "naranja", "azul"};
-        String[] B = new String[C.length];
         Sort.KeyExtractor<String, Integer> stringLength = s -> {return (int) s.length();};
         String[] expected = {"azul", "naranja", "holaaaaa"};
 
-        Sort.countingSort(C, B, stringLength, 255);
-        assertArrayEquals(expected, B);
+        Sort.countingSort(C, stringLength, 255);
+        assertArrayEquals(expected, C);
 
     }
 
@@ -129,14 +128,14 @@ class SortTest {
         Persona p2 = new Persona("Ana", 30);
         Persona p3 = new Persona("Luis", 22);
         Persona p4 = new Persona("Alejandro", 18);
-        Persona[] personas = {p1, p2, p3, p4};
-        Persona[] salida = new Persona[personas.length];
+        Persona[] personas = {p2, p1, p3, p4};
+
         Sort.KeyExtractor<Persona, Integer> edad = p -> p.edad;
         Persona[] expected = {p4, p3, p1, p2};
 
-        Sort.countingSort(personas, salida, edad, 80);
+        Sort.countingSort(personas, edad, 80);
 
-        assertArrayEquals(expected, salida);
+        assertArrayEquals(expected, personas);
 
     }
 
@@ -147,14 +146,14 @@ class SortTest {
         Persona p3 = new Persona("Luis", 22);
         Persona p4 = new Persona("Alejandro", 18);
         Persona[] personas = {p1, p2, p3, p4};
-        Persona[] salida = new Persona[personas.length];
 
 
-        Sort.countingSort(personas, salida, p -> {return (int) p.nombre.charAt(0);},255);
+
+        Sort.countingSort(personas, p -> {return (int) p.nombre.charAt(0);},255);
 
 
         Persona[] expected = {p2, p4, p1, p3};
-        assertArrayEquals(expected, salida);
+        assertArrayEquals(expected, personas);
     }
 
     @Test
